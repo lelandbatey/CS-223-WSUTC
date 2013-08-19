@@ -1,0 +1,13 @@
+Instructor:
+    Brian LaMarche
+    brian.lamarche@email.wsu.edu
+
+Required textbooks:
+
+Data structures and algorithm analysis in C++
+    Author: Mark Allen Weiss
+    Other Info: 3rd addition
+
+Accelerated C++; Practical programming by Example
+    Author: Andrew Koenig, Barbara E. Moo
+    
