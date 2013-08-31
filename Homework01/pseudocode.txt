@@ -1,0 +1,17 @@
+levelCheck (node, level):
+    node.level = level
+    if node.left:
+        levelCheck(nodel.left, level+1)
+    elif node.right:
+        levelCheck(node.right, level+1)
+    return;
+
+levelCount(node, dict *mydict)
+    
+    if node.level is in myDict.keys():
+        myDict[node.level] += 1
+
+    else:
+        myDict[node.level] = 1
+
+    
