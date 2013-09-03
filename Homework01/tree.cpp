@@ -80,3 +80,11 @@ void tree::recursePrint(treeNode* node){
         recursePrint(node->rightChild);
     }
 }
+
+void tree::depthFistSearch(){
+    return;
+}
+
+void tree::breadthFirstSearch(){
+    return;
+}

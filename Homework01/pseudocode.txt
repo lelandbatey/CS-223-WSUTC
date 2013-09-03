@@ -14,4 +14,50 @@ levelCount(node, dict *mydict)
     else:
         myDict[node.level] = 1
 
-    
+
+//Taken from here: http://www.geeksforgeeks.org/maximum-width-of-a-binary-tree/#comment-1016408312
+
+
+int find_max_width (Tree *node) {
+
+    if (!node) return 0;
+
+    q->push (node);
+
+    int w = 1;
+    int max_w = 0; 
+    Tree *lev_start_node = node;
+
+    while (q.empty() == false) {
+
+        node = q.first();
+        q->push (node->left);
+        q->push (node->right);
+
+        if (lev_start_node == node || q.empty() == true) { 
+            
+            lev_start_node = node->left;
+            
+            if (max_w < w){
+                max_w = w;
+            }
+            w = 0;
+        }
+        w++;
+    }
+    return max_w;
+} 
+
+q:
+    enqueue(val):
+        create new queueNode; // Magic
+        queueNode.val = val;
+        *tail.next_p = &queueNode;
+        tail = &queueNode;
+        return;
+
+    dequeue():
+        if head:
+            toReturn = head;
+            head = *head.next_p;
+            return(toReturn);
