@@ -6,7 +6,8 @@ private:
 
     // Pointers to track the head and tail of the queue
     queueNode* head;
-    queueNode* tail;  
+    queueNode* tail;
+    int qCount;
 
 
 public:
@@ -18,11 +19,13 @@ public:
     // } queueNode;
 
     queue();
-    ~queue();
+    int count();
+    // ~queue();
     void enqueue(treeNode*);
     treeNode* dequeue();
     int empty();
     void first();
-    
+        
+    void walk();
 };
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <map> // Dictionary/map
 #include "tree.h"
 #include "queue.h"
 
@@ -18,6 +18,22 @@ using namespace std;
 // the value from the stream and maintain it's initial value. This allows me
 // to (in a ghetto way) deal with non-integer input.
 
+// Used to check if 
+int charCheck(string someText){
+    unsigned int i = 0;
+
+    for(i = 0; i < someText.length(); i++)
+    {
+        if (isdigit(someText[i]) || someText[i] == '-')
+        {
+            
+        } else {
+            return 1;
+        }
+    }
+    return 0;
+
+}
 
 
 int recursePrint(treeNode *node){ // Prints out all the numbers in order.
@@ -37,7 +53,7 @@ int main()
     int input=SENTINEL;
     string inputString = "";
     tree myTree;
-    stringstream ss;
+    
 
     while (doneFlag == 0){
         cin >> inputString;
@@ -47,21 +63,22 @@ int main()
             doneFlag = 1;
         } else { // If they enter something that's not END
 
-            // Here we do the "stream-dropthrough". If the string can't be made
-            // into a valid integer, then the integer that it's being assigned to
-            // will retain it's old value.
-            ss << inputString;
-            ss >> input;
-
-            if (input != SENTINEL) // If the user's entered a valid integer, add that value to the tree.
-            {
+            if (!charCheck(inputString)){ // If there are no non-number characters in the string, then we add it to the tree.
+                input = atoi(inputString.c_str());
+                // cout << input << endl;
                 myTree.add(input);
             }
+
         }
     }
 
-    myTree.depthFirstSearch();
-    myTree.breadthFirstSearch();
+    myTree.setDepth();
+    myTree.findMaxWidth();
+    // myTree.print();
+    // myTree.depthFirstSearch();
+    // myTree.breadthFirstSearch();
+
+    // myTree.print();
 
     return 0;
 }

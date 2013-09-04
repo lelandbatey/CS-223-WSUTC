@@ -4,6 +4,7 @@
 
 typedef struct node{
     int value;
+    int depth;
     struct node *leftChild;
     struct node *rightChild;
 } treeNode;
@@ -22,8 +23,25 @@ typedef struct tQueueNode{// Defines the structure of the nodes to be used in th
 // way, I'm breaking one of the guidlines for this class that says our code must
 // be reusable, but given the narrow use of this code, I've chosen to not do it
 // that way.
+using namespace std;
+
 class tree
 {
+
+private:
+    int maxDepth;
+    map<int, int> widthMap;
+
+    void recursePrint(treeNode* );
+    void nodeAdd(int, treeNode**);
+    void recurseDepth(treeNode* ,int);
+    void findMaxDepth(treeNode* );
+    void recurseWidth(treeNode* node);
+
+    
+    // Gotta have our root node!
+    treeNode* root;
+   
 
 public:
     // typedef struct node{
@@ -33,25 +51,20 @@ public:
     // } treeNode;
 
     tree();
-    ~tree();
+    // ~tree();
 
     void depthFirstSearch();
     void breadthFirstSearch();
+
+    void findMaxWidth();
 
     // We don't need the actual variable names in the .h file, just the types
     // that'll be used.
     void add(int);
     void print();
+    void setDepth();
 
     
-private:
 
-    void recursePrint(treeNode* node);
-    void nodeAdd(int, treeNode**);
-    
-    // Gotta have our root node!
-    treeNode* root;
-
-   
 
 };
