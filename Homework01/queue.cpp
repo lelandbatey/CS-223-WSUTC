@@ -1,5 +1,6 @@
-#include "queue.h"
 #include "tree.h"
+#include "queue.h"
+#include <stdlib.h> // Gotta have out NULLs
 
 void queue::enqueue(treeNode* leafNode){// I'm running out of "node" synonyms,
                                         //I'll just have to deal with the vague-
@@ -15,8 +16,8 @@ void queue::enqueue(treeNode* leafNode){// I'm running out of "node" synonyms,
 
     // Points the "next" pointer of the last node to the new node, then sets the
     // "tail" of the queue to reference the new node.
-    *tail.next_p = &tempNode;
-    tail = &tempNode;
+    this->tail->next_p = tempNode;
+    tail = tempNode;
 
     return;
 }
@@ -29,10 +30,10 @@ treeNode* queue::dequeue(){
     {   
     // Set's up toReturn to point to the treeNode that was being referenced by
     // the head, then points our head to the next item in the queue.
-        toReturn = *head->tNode;
+        toReturn = head->tNode;
 
-        if (*head.next_p){ // If there's another node in the queue, set the head to that.
-            head = *head.next_p;
+        if (head->next_p){ // If there's another node in the queue, set the head to that.
+            head = head->next_p;
         } else { // If there's NOT another node in the queue, set head to NULL
             head = NULL;
         }
@@ -41,7 +42,7 @@ treeNode* queue::dequeue(){
         toReturn = NULL;
     }
 
-    return toReturn
+    return toReturn;
 
 }
 

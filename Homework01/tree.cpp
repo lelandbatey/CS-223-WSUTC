@@ -1,8 +1,10 @@
 #include "tree.h"
 #include "queue.h"
-#include "stack.h"
+// #include "stack.h"
 #include <iostream>
 #include <string>
+
+using namespace std;
 
 // Ok, so in the .cpp file, we implement only the methods, and we use the format:
 //
@@ -10,7 +12,7 @@
 
 
 void tree::add(int i){
-    nodeAdd(i, &root)
+    nodeAdd(i, &root);
 }
 
 
@@ -68,7 +70,7 @@ void tree::nodeAdd(int leefVal, treeNode** node){
 }
 
 void tree::print(){
-    recursePrint(root)
+    recursePrint(root);
 }
 
 void tree::recursePrint(treeNode* node){
@@ -81,7 +83,7 @@ void tree::recursePrint(treeNode* node){
     }
 }
 
-void tree::depthFistSearch(){
+void tree::depthFirstSearch(){
     return;
 }
 

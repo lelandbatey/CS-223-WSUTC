@@ -1,20 +1,22 @@
 #include <stdio.h>
-#include <iostream>
 #include <stdlib.h>
+#include <iostream>
+#include <string>
+#include <sstream>
 #include "tree.h"
 #include "queue.h"
+
+using namespace std;
 // Leland Batey
 // Cpts 223
-// Interview Questions
 
+#define SENTINEL 31415 // This will be the sentinel value for numbers read from stdin.
+// Explanation of the above:
 
-// Requirements:
-//     Build a program that can create a binary search tree from an array of integers.
-//     Then perform:
-//         1. A depth first traversal
-//         2. A breadth first traversal
-
-//     Additionally, implement a stack, and implement a queue (for use with searches).
+// So it turns out that if you initiallize an `int` to some number, then try
+// to assign a non-int value to that int from a stream, it will just ignore
+// the value from the stream and maintain it's initial value. This allows me
+// to (in a ghetto way) deal with non-integer input.
 
 
 
@@ -31,17 +33,36 @@ int recursePrint(treeNode *node){ // Prints out all the numbers in order.
 
 int main()
 {
-    treeNode* root;
-    int i;
-    int x;
+    int doneFlag = 0; // Will be used to stop the while loop.
+    int input=SENTINEL;
+    string inputString = "";
+    tree myTree;
+    stringstream ss;
 
-    for (i = 0; i <= 15; ++i)
-    {
-        for (x = 0; x <= 4; x++){ // This is just here to throw in some duplicate values to see how they're handled.
-            nodeAdd(x, &root);
+    while (doneFlag == 0){
+        cin >> inputString;
+
+        if (inputString == "END")
+        {
+            doneFlag = 1;
+        } else { // If they enter something that's not END
+
+            // Here we do the "stream-dropthrough". If the string can't be made
+            // into a valid integer, then the integer that it's being assigned to
+            // will retain it's old value.
+            ss << inputString;
+            ss >> input;
+
+            if (input != SENTINEL) // If the user's entered a valid integer, add that value to the tree.
+            {
+                myTree.add(input);
+            }
         }
-        nodeAdd(i, &root);
     }
-    recursePrint(root);
+
+    myTree.depthFirstSearch();
+    myTree.breadthFirstSearch();
+
     return 0;
 }
+
