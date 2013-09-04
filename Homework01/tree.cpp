@@ -200,12 +200,13 @@ void tree::findMaxDepth(treeNode* node){
 void tree::setDepth(){
     recurseDepth(root,1);
     findMaxDepth(root);
-    cout << "Maximum depth: " << maxDepth << endl; 
+    cout << "Tree Height: " << maxDepth << endl; 
 }
 
 void tree::findMaxWidth(){
     int i;
     int largest = 1;
+    int largeLevel = 1;
     recurseWidth(root);
     for (i = 0; i < (maxDepth*maxDepth); ++i)
     {
@@ -213,9 +214,11 @@ void tree::findMaxWidth(){
         if (widthMap[i] > largest)
         {
             largest = widthMap[i];
+            largeLevel = i;
         }
     }
-    cout << "The widest level is: " << largest << endl;
+    cout << "Maximum Width: " << largest << endl;
+    cout << "Maximum Width Level: " << largeLevel << endl;
 }
 
 void tree::recurseWidth(treeNode* node){
