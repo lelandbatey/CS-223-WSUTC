@@ -7,7 +7,7 @@ using namespace std;
 
 template <class T>
 void tree_template<T>::add(T inVal){
-    addNode(inVal, &root);
+    addNode(inVal, root);
 }
 
 template <class T>

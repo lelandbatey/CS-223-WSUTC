@@ -1,4 +1,4 @@
-
+#include "stdlib.h"
 
 template <class T>
 class node_template
