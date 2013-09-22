@@ -112,7 +112,10 @@ Where 10 would be the 10th position in the feed or petting list. So, if FIDO is 
 # Additional Questions:
 
 1. Under both the feed and pet sections, there is a reference to "sorting the animals" by various metrics. Given that the internal "sort" structure might not matter, I assume this sorting is for presentational purposes. Am I correct that that happens as part of the `"print the animals by their current order"` under Speak?
+    - This is correct. There must be an internal order maintained for use during printing.
 
 2. Are we supposed to read the CSV over the stdin through redirection?
+    - We'll be reading the CSV from within the program. We'll have the file name passed in on the command line.
 
 3. If things are searched case-insensitively, does the case of the output (`DOG, FIDO IV, 15, 9, 185, 5`) matter? In fact, does the case of any of the output matter?
+    - The printing is als case-insensitive.

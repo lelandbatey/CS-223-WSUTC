@@ -6,7 +6,15 @@ def divUp(num,den):
 
 def buildTreeInput(inList):
 
-    if len(inList) > 1:
+    if len(inList) == 3:
+        print(inList[1])
+        print(inList[0])
+        print(inList[2])
+
+    elif len(inList) == 1:
+        print(inList[0])
+
+    elif len(inList) > 1:
         mini = 0
         maxi = len(inList)
         mid = divUp(maxi,2)
@@ -26,8 +34,8 @@ def buildTreeInput(inList):
         buildTreeInput(lower)
         buildTreeInput(upper)
 
-    if len(inList) == 1:
-        print(inList[0])
+    
+
 
 def main(size=10):
     i = [i for i in range(size)]
@@ -35,3 +43,33 @@ def main(size=10):
     buildTreeInput(i)
 
 main(30)
+# 15
+# 8
+# 4
+# 2
+# 1
+# 0
+# 3
+# 6
+# 5
+# 7
+# 12
+# 10
+# 9
+# 11
+# 14
+# 13
+# 23
+# 20
+# 18
+# 17
+# 16
+# 19
+# 22
+# 21
+# 27
+# 25
+# 24
+# 26
+# 29
+# 28
