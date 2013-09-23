@@ -5,11 +5,19 @@ class animals_c
 
 private:
     std::string name;
+    std::string trueName; // True name will be set during creation, and is NOT 
+                          // unique. Is used as the "base" when creating the 
+                          // derived name, which is unique, and uses roman 
+                          // numerals for it's representation.
     double weight;
     double friendliness;
     double hunger;
     double age;
     double duplicate;
+    double numName; // Num name will be used as the numerical representation of
+                    // an animals name in the BST.
+    int dupNum; // Integer representing decimal form of number appended to the 
+                // name to build the unique derived name. 
 
 public:
     
@@ -47,6 +55,29 @@ public:
         // The 0.1 means %10. As in, increase the amount they weigh by 
         // (10% of weight * number of food items)
     };
+
+    void print(){
+        // Prints out the attributes of the instance of this animal.
+        // uses "std::cout.width" to set the appropriate width.
+
+        std::cout.width(10);
+
+        std::cout << getGreeting() << ",";
+        std::cout.width(10);
+        std::cout << getType() << ",";
+        std::cout.width(10);
+        std::cout << getName() << ",";
+        std::cout.width(10);
+        std::cout << getAge() << ",";
+        std::cout.width(10);
+        std::cout << getFriendly() << ",";
+        std::cout.width(10);
+        std::cout << getWeight() << ",";
+        std::cout.width(10);
+        std::cout << getHunger() << std::endl;
+
+    }
+
 
     double getHunger(){   return hunger; };
     double getFriendly(){ return friendliness; };

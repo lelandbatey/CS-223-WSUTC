@@ -12,7 +12,7 @@
 // #include <string>
 
 #ifndef DEBUG_FLAG
-#define DEBUG_FLAG 1
+#define DEBUG_FLAG 0
 #endif
 
 
@@ -123,3 +123,39 @@ std::string strUpper(std::string str) {
 
     return str;
 }
+
+std::string iToRoman(int i) {
+    // Given a number, returns a the roman numeral representation of that 
+    // string as an integer.
+    //
+    // Only works from 1 to 10
+
+    switch (i) {
+    case 1:
+        return std::string("I");
+    case 2:
+        return std::string("II");
+    case 3:
+        return std::string("III");
+    case 4:
+        return std::string("IV");
+    case 5:
+        return std::string("V");
+    case 6:
+        return std::string("VI");
+    case 7:
+        return std::string("VII");
+    case 8:
+        return std::string("VIII");
+    case 9:
+        return std::string("IX");
+    case 10:
+        return std::string("X");
+    }
+
+    return std::string("");
+
+
+}
+
+

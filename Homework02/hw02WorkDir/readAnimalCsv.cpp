@@ -5,9 +5,9 @@
 // Will return a struct of type "animal" with string fields for all it's data.
 
 // Flag used for printing debug messages.
-#ifndef DEBUG_FLAG
-#define DEBUG_FLAG 1
-#endif
+// #ifndef DEBUG_FLAG
+// #define DEBUG_FLAG 1
+// #endif
 
 
 

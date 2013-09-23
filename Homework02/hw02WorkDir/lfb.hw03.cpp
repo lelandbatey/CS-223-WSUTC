@@ -123,7 +123,13 @@ int main(int argc, char const *argv[])
             if (DEBUG_FLAG) {
                 printZoo(zoo);
             }
-        } else if 
+        } else if ( input == "SPEAK") {
+            // Print out our animals in the order they're represented in the vector.
+            // Here we use "std::cout.width" to set the width of each feild.
+            for (unsigned int i = 0; i < zoo.size(); ++i) {
+                zoo[i]->print();
+            }
+        }
 
 
     }
