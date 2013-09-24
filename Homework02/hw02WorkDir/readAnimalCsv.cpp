@@ -94,35 +94,24 @@ std::vector<animal_ts> getAnimals(std::string fileName){
             // and it's super *not* portable. However, I'm not in any kind of
             // corporate environment, so if I have to deal with this again,
             // it'll be just me, and it'll be this semester. So THERE!
-
-            //    Notes on The "Magic Numbers" below:
-            //
-            // If you look down, you'll see that each substr operation has
-            // some number (either a -1 or a +1) on the end of it. Those exist
-            // to trim what we'd otherwise get from the substr. You'll notice
-            // that the first one has a it's addition and subtraction
-            // switched. That substr gets the first field, which is just after
-            // a newline. Because of that, it's got nothing that comes before
-            // it. The algorithm would otherwise trim it's first char, but
-            // this way that doesn't happen.
             switch (count) {
             case 1:
                 animalArray[i].type = strFlog( line.substr(current, next-current) );
                 break;
             case 2:
-                animalArray[i].name = strFlog(line.substr(current+1, next-current-1));
+                animalArray[i].name = strFlog(line.substr(current, next-current));
                 break;
             case 3:
-                animalArray[i].age = strFlog(line.substr(current+1, next - current-1));
+                animalArray[i].age = strFlog(line.substr(current, next - current));
                 break;
             case 4:
-                animalArray[i].friendliness = strFlog(line.substr(current+1, next - current-1));
+                animalArray[i].friendliness = strFlog(line.substr(current, next - current));
                 break;
             case 5:
-                animalArray[i].weight = strFlog(line.substr(current+1, next - current-1));
+                animalArray[i].weight = strFlog(line.substr(current, next - current));
                 break;
             case 6:
-                animalArray[i].hunger = strFlog(line.substr(current+1, next - current-1));
+                animalArray[i].hunger = strFlog(line.substr(current, next - current));
             }
 
         }

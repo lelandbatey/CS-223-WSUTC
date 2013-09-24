@@ -1,9 +1,0 @@
-Exception: STATUS_ACCESS_VIOLATION at eip=6D673776
-eax=00000061 ebx=80048A54 ecx=800489B0 edx=00000007 esi=00000000 edi=0028CD74
-ebp=0028AC18 esp=0028ABCC program=C:\Users\Leland\Dropbox\WSU\2013 - Fall Semester\cs223\Homework02\hw02WorkDir\homework2.exe, pid 2252, thread main
-cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
-Stack trace:
-Frame     Function  Args
-0028AC18  6D673776 (00000000, 0028CD74, 0028ACE8, 61007FB5)
-0028ACE8  61007FB5 (00000000, 0028CD74, 61007120, 00000000)
-End of stack trace

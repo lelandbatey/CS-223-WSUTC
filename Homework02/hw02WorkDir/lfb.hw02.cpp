@@ -167,7 +167,7 @@ int main(int argc, char const *argv[])
 
             // std::cout<< "Name: '" << input << '\'' << std::endl;
             
-            input = strUpper(input);
+            // input = strUpper(input);
 
             tree_t<animals_c*> bst;
             bst.setEqFunc(&fixSameName);
@@ -176,11 +176,20 @@ int main(int argc, char const *argv[])
             for (unsigned int i = 0; i < zoo.size(); i++) {
                 bst.add(zoo[i]);
             }
-
-            // bst.print();
             bst.setFindEqFunc(&compareStrToAnimal);
             bst.find(otherIn);
 
+        } else if ( input == "PRINT"){ // HOLY SHARK BAIT BATMAN, EXTRA FEATURES?!?!
+            input = strUpper(input);
+
+            tree_t<animals_c*> bst;
+            bst.setEqFunc(&fixSameName);
+            bst.setFindEqFunc(&compareStrToAnimal);
+            // Build the BST!
+            for (unsigned int i = 0; i < zoo.size(); i++) {
+                bst.add(zoo[i]);
+            }
+            bst.print();
         }
 
 
