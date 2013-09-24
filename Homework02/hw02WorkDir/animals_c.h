@@ -207,6 +207,10 @@ public:
 
 
 
+// These two functions are used fo the below sort functions. They exist so
+// that the "std::sort()" function can make sense of the animals class and do
+// an accurate comparison of them.
+
 bool weightComp(animals_c* const& animal1, animals_c* const& animal2 ) {
     return animal1->getWeight() < animal2->getWeight();
 }
@@ -214,6 +218,11 @@ bool weightComp(animals_c* const& animal1, animals_c* const& animal2 ) {
 bool friendComp(animals_c* const& animal1, animals_c* const& animal2 ) {
     return animal1->getFriendly() < animal2->getFriendly();
 }
+
+
+// The below two functions pretty much do what it says on the tin: they sort a
+// given "zoo" by the animals weight and by the animals friendliness,
+// respectively.
 
 // Returns copy of zoo where it's sorted from least heavy to most heavy
 std::vector<animals_c*> sortZooWeight(std::vector<animals_c*> zoo) {
@@ -226,6 +235,10 @@ std::vector<animals_c*> sortZooFriendly(std::vector<animals_c*> zoo) {
     std::sort( zoo.begin(), zoo.end(), friendComp);
     return zoo;
 }
+
+
+// Two short convenience methods to "pet" and "feed" all the animals in a
+// given "zoo".
 
 // "Feeds" all the animals in the zoo
 void feedAll( std::vector<animals_c*> zoo, double amount) {
@@ -275,6 +288,12 @@ std::vector<animals_c*> buildZoo(std::vector<animal_ts> animals){
     return zoo;
 };
 
+
+// Function given to the binary search tree to be run on an animal when it
+// finds that their names are equal. It mutates the name of the animal that's
+// trying to be inserted (animal2) by taking it's "base name" and adding the
+// appropriate roman-numeral suffix to the end.
+
 // Takes two animals, modifying the seconds name if they're initially the same
 void fixSameName(animals_c* animal1, animals_c* animal2){
     // Compare the names of animal1 and animal2
@@ -287,6 +306,8 @@ void fixSameName(animals_c* animal1, animals_c* animal2){
     }
 }
 
+// The function given to the binary search tree to see if an animal has the
+// same name as string being searched for.
 int compareStrToAnimal(animals_c* animal, std::string str) {
 
     if (DEBUG){

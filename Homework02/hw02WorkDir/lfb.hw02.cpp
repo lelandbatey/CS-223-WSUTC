@@ -34,6 +34,9 @@ int main(int argc, char const *argv[])
 {
     if (argc < 2){ // If they didn't pass in a second argument (the file name)
         std::cout << "Yall didn't put in a file name :P" << std::endl;
+        // I just want this here for the record: the specification does NOT
+        // specify what should be printed in the case of no file name being
+        // provided as an argument. So, I'm printing what I want.
         return 0;
     }
 
@@ -49,6 +52,8 @@ int main(int argc, char const *argv[])
     std::string otherIn;
 
 
+    // Since we only do this once, we're just gonna hard code it in (instead
+    // of breaking it out into it's own fuction like "printZoo").
     if (DEBUG) {
         std::cout <<" Size of animals vector: '" << animals.size() << "'" << std::endl;
         for (int i = 0; i < actualAnimals(animals); ++i)
@@ -87,7 +92,9 @@ int main(int argc, char const *argv[])
         } else if (zoo[i]->getWeight() < 0) {
             std::cout << "Incorrect Age Found" << std::endl;
             doneFlag = TRUE;
-            break; // We don't want to print out "incorrect <thing> found" every time we find a negative value. So, we break out of the loop the first time."
+            break; // We don't want to print out "incorrect <thing> found" 
+                   // every time we find a negative value. So, we break out of
+                   // the loop the first time."
         }
     }
 
@@ -99,11 +106,11 @@ int main(int argc, char const *argv[])
     // EASILY the dirtiest thing I'll do in this entire program.
     //
     // Builds a "garbage" binary search tree that we'll never use for
-    // anything. However, when we build a BST, it does the name fixing. So, we
-    // build this bst literally JUST because it will do the name fixing for
-    // us.
+    // anything. However, when we build a BST, it does the name collision
+    // detection and fixing. So, we build this bst literally JUST because it
+    // will modify the animals names for us.
     //
-    // This is disgusting.
+    // This is disgusting. I feel so dirty :C
     tree_t<animals_c*> garbagebst; 
     garbagebst.setEqFunc(&fixSameName);
     // Build the BST!
@@ -117,11 +124,20 @@ int main(int argc, char const *argv[])
 
     while (!doneFlag) {
         input = "";
-        // std::cin.ignore(500,' ') >> input;
-        // std::cin >> input;
+
+        // So, you may ask, why is it that we're not just using good ol'
+        // "std::cin >> somevar" to get what we need right here?
+        //
+        // I'll tell you why: because doing it that way for anything but the
+        // most trivial of input sucks giant purple donkey dicks. Seriously,
+        // though, we get the whole line so we can break it up all nice and
+        // neet however we want. In this case, we want everything before the
+        // first space on the line of input to be the "command" verb, and
+        // everything after that (if anything) to be modifiers to that command
+        // verb.
         std::getline(std::cin, input);
-        otherIn = getAfter(input," ");
-        input = getBefore(input," ");
+        otherIn = getAfter(input," "); // The command verb
+        input = getBefore(input," "); // the command modifiers
 
         input = strUpper(input);
         otherIn = strUpper(otherIn);
@@ -138,9 +154,6 @@ int main(int argc, char const *argv[])
 
         } else if (input.find("FEED") != std::string::npos) { // If "FEED" is a substring of input
             
-            // get the number that comes after "FEED"
-            // feedAmnt = strToDub(getAfter(input,spaceDelim));
-            // std::cin >> feedAmnt; // Boom, we got the amount to feed our dudes by.
             feedAmnt = strToDub(otherIn);
             feedAll(zoo, feedAmnt);
             zoo = sortZooWeight(zoo);
@@ -164,10 +177,6 @@ int main(int argc, char const *argv[])
                 zoo[i]->print();
             }
         } else if ( input == "FIND") {
-
-            // std::cout<< "Name: '" << input << '\'' << std::endl;
-            
-            // input = strUpper(input);
 
             tree_t<animals_c*> bst;
             bst.setEqFunc(&fixSameName);

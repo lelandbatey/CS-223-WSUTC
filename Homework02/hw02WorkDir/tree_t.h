@@ -9,6 +9,8 @@ private:
     node_t<T>* root;
 
     // Amalgamation of my previous code, but with some solid conventions taken from the awesome tree example by Steven Hickson
+
+    // So, something a bit different about this 
     void addNode(T &inVal, node_t<T>*& inNode) {
         if ( inNode == NULL ){
             inNode = new node_t<T>();
@@ -63,7 +65,7 @@ private:
     // is a std::string, and we need to know how to find a compare a
     // std::string to some facet of our object. So, we must once again be
     // provided with a function that "knows" how to properly make that
-    // comparison and returns a bool telling us whether we've found our node
+    // comparison and returns an int telling us whether we've found our node
     // or not.
     //
     // Must return 1 if they ARE equal.
@@ -77,13 +79,11 @@ private:
             return 1;
         }
         if (node->getRight()){
-            // std::cout << "  Right: " << node->getRight()->getVal()->getName() << std::endl;
             if (recursiveFind(str, node->getRight())){
                 return 1;
             }
         }
         if (node->getLeft()){
-            // std::cout << "  Left: " << node->getLeft()->getVal()->getName() << std::endl;
             if (recursiveFind(str, node->getLeft())){
                 return 1;
             }

@@ -4,16 +4,16 @@
 
 // Will return a struct of type "animal" with string fields for all it's data.
 
-// Flag used for printing debug messages.
-// #ifndef DEBUG
-// #define DEBUG 1
-// #endif
-
 
 
 typedef struct {
     std::string type, name, age, friendliness, weight, hunger;
 } animal_ts;
+
+// This struct is just a convenient storage place to stick the things we read
+// out of the csv file. Later, we do actually convert all the data to the
+// proper type and what-not. But for now, we just stick it in a struct :/
+
 
 
 int actualAnimals(std::vector<animal_ts> animals){
@@ -42,7 +42,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
 
 
     std::ifstream input(fileName.c_str());
-    std::string delims = ","; // We're assuming that the CSV will have spaces with it's commas.
+    std::string delims = ",";
     std::string line;
 
     unsigned int next; // Needs to be unsigned to stop warning when later compared with std::string
@@ -96,22 +96,22 @@ std::vector<animal_ts> getAnimals(std::string fileName){
             // it'll be just me, and it'll be this semester. So THERE!
             switch (count) {
             case 1:
-                animalArray[i].type = strFlog( line.substr(current, next-current) );
+                animalArray[i].type      =    strFlog( line.substr(current, next-current) );
                 break;
             case 2:
-                animalArray[i].name = strFlog(line.substr(current, next-current));
+                animalArray[i].name      =    strFlog(line.substr(current, next-current));
                 break;
             case 3:
-                animalArray[i].age = strFlog(line.substr(current, next - current));
+                animalArray[i].age       =    strFlog(line.substr(current, next - current));
                 break;
             case 4:
                 animalArray[i].friendliness = strFlog(line.substr(current, next - current));
                 break;
             case 5:
-                animalArray[i].weight = strFlog(line.substr(current, next - current));
+                animalArray[i].weight    =    strFlog(line.substr(current, next - current));
                 break;
             case 6:
-                animalArray[i].hunger = strFlog(line.substr(current, next - current));
+                animalArray[i].hunger    =    strFlog(line.substr(current, next - current));
             }
 
         }
@@ -121,4 +121,3 @@ std::vector<animal_ts> getAnimals(std::string fileName){
     return animalArray;
 }
 
-// std::string getField()

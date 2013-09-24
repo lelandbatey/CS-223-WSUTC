@@ -2,6 +2,9 @@
 // lfbLib.h
 //
 // All the random one-off functions I build for things I do often.
+//
+// I have a feeling this is going to slowly morph into "all the awesome
+// functions python has, now implemented (poorly) in C++!"
 
 // Generally, this stuff is called by things above it, but if not, then uncomment these lines.
 // #include <algorithm>
@@ -10,7 +13,10 @@
 // #include <fstream>
 // #include <vector>
 // #include <string>
+// #include <math.h>
 
+// Debug. Very important, since tons of stuff is set to print if this is set
+// to "1". Don't touch unless you want to get TMI'd by this thing.
 #ifndef DEBUG
 #define DEBUG 0
 #endif
@@ -25,7 +31,7 @@
 #endif
 
 // Returns everything in a string that comes after a delimiter. If the
-// delimiter isn't present, it just returns an empty string.
+// delimiter isn't present, it just returns the input string.
 std::string getAfter(std::string input, std::string delimiter) {
     unsigned int i;
 
@@ -44,6 +50,8 @@ std::string getAfter(std::string input, std::string delimiter) {
     } 
 }
 
+// Returns everything that comes "before" a delimiter. If the delimiter isn't
+// present, it returns the input string.
 std::string getBefore(std::string input, std::string delimiter) {
     unsigned int i;
     i = input.find_first_of(delimiter);
@@ -78,7 +86,7 @@ int charCheck(std::string someText){
 
 }
 
-// Converts string to double
+// Converts std::string to double
 double strToDub(std::string str){
     double result;
     std::stringstream convert(str);
@@ -135,7 +143,7 @@ std::string strFlog(std::string str) {
     return str;
 }
 
-// EXCLUSIVELY upercases at string
+// EXCLUSIVELY upercases a std::string
 std::string strUpper(std::string str) {
     std::transform(str.begin(), str.end(), str.begin(), upper); // Make it uppercase
 
@@ -177,23 +185,25 @@ std::string iToRoman(int i) {
 }
 
 
-// Returns a *reletively* unique representation of a given string
+// Returns a *relatively* unique representation of a given string
+//
+// Basically, for each character in a std::string, it takes the ascii number
+// for that char, subtracts 31 from it to make it a little smaller, then
+// squares that number. This large value is then added to all the sum of all
+// the previous process for each char. Once all that's been done, it
+// multiplies the total by the length of the string.
+//
+// It won't make numbers to large to fit in an int (at least for relatively
+// small strings), but they'll be at least *close* to unique.
 int deriveNumericName(std::string name) {
     int numericName = 0;
     int temp = 0;
 
     for (unsigned int i = 0; i < name.length(); ++i) {
         
-        temp = int(name.c_str()[i]) - 64;
-        // std::cout <<"  Name     : '" << name << "'" << std::endl;
-        // std::cout <<"  name len : "<< name.length() << std::endl;
-        // std::cout <<"  i        : "<< i << std::endl;
-        // std::cout <<"  Char     : "<< name[i] << std::endl;
-        // std::cout <<"   Temp       :"<< temp << std::endl;
+        temp = int(name.c_str()[i]) - 31;
 
         temp = pow(temp,2); // Square temp
-
-        // std::cout <<"   TempSquared: "<< temp << std::endl;
 
         numericName = numericName + temp;
     }
