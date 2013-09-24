@@ -11,8 +11,8 @@
 // #include <vector>
 // #include <string>
 
-#ifndef DEBUG_FLAG
-#define DEBUG_FLAG 0
+#ifndef DEBUG
+#define DEBUG 0
 #endif
 
 
@@ -31,17 +31,35 @@ std::string getAfter(std::string input, std::string delimiter) {
 
     i = input.find_first_of(delimiter);
 
-    if (DEBUG_FLAG){
-        std::cout << " i is        : " << i << std::endl;
-        std::cout << " delimiter is: '" << delimiter << "'" << std::endl;
-        std::cout << " input is    : '" << input << "'" << std::endl;
-    }
+    // if (DEBUG){
+    //     std::cout << " i is        : " << i << std::endl;
+    //     std::cout << " delimiter is: '" << delimiter << "'" << std::endl;
+    //     std::cout << " input is    : '" << input << "'" << std::endl;
+    // }
 
     if (i == std::string::npos) {
-        return std::string("");
+        return input;
     } else {
-        return input.substr(i, std::string::npos);
+        return input.substr(i+1, std::string::npos);
     } 
+}
+
+std::string getBefore(std::string input, std::string delimiter) {
+    unsigned int i;
+    i = input.find_first_of(delimiter);
+
+    // if (DEBUG){
+    //     std::cout << " i is        : " << i << std::endl;
+    //     std::cout << " delimiter is: '" << delimiter << "'" << std::endl;
+    //     std::cout << " input is    : '" << input << "'" << std::endl;
+    // }
+
+    if (i == std::string::npos) {
+        return input;
+    } else {
+        return input.substr(0,i);
+    }
+
 }
 
 // Used to check if a string represents a number or whether it represents a digit.
@@ -132,30 +150,59 @@ std::string iToRoman(int i) {
 
     switch (i) {
     case 1:
-        return std::string("I");
+        return std::string(" I");
     case 2:
-        return std::string("II");
+        return std::string(" II");
     case 3:
-        return std::string("III");
+        return std::string(" III");
     case 4:
-        return std::string("IV");
+        return std::string(" IV");
     case 5:
-        return std::string("V");
+        return std::string(" V");
     case 6:
-        return std::string("VI");
+        return std::string(" VI");
     case 7:
-        return std::string("VII");
+        return std::string(" VII");
     case 8:
-        return std::string("VIII");
+        return std::string(" VIII");
     case 9:
-        return std::string("IX");
+        return std::string(" IX");
     case 10:
-        return std::string("X");
+        return std::string(" X");
     }
 
     return std::string("");
 
 
 }
+
+
+// Returns a *reletively* unique representation of a given string
+int deriveNumericName(std::string name) {
+    int numericName = 0;
+    int temp = 0;
+
+    for (unsigned int i = 0; i < name.length(); ++i) {
+        
+        temp = int(name.c_str()[i]) - 64;
+        // std::cout <<"  Name     : '" << name << "'" << std::endl;
+        // std::cout <<"  name len : "<< name.length() << std::endl;
+        // std::cout <<"  i        : "<< i << std::endl;
+        // std::cout <<"  Char     : "<< name[i] << std::endl;
+        // std::cout <<"   Temp       :"<< temp << std::endl;
+
+        temp = pow(temp,2); // Square temp
+
+        // std::cout <<"   TempSquared: "<< temp << std::endl;
+
+        numericName = numericName + temp;
+    }
+
+    numericName = numericName * name.length();
+
+    return numericName;
+
+}
+
 
 

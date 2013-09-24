@@ -5,7 +5,7 @@ class animals_c
 
 private:
     std::string name;
-    std::string trueName; // True name will be set during creation, and is NOT 
+    std::string baseName; // True name will be set during creation, and is NOT 
                           // unique. Is used as the "base" when creating the 
                           // derived name, which is unique, and uses roman 
                           // numerals for it's representation.
@@ -14,10 +14,32 @@ private:
     double hunger;
     double age;
     double duplicate;
-    double numName; // Num name will be used as the numerical representation of
-                    // an animals name in the BST.
-    int dupNum; // Integer representing decimal form of number appended to the 
-                // name to build the unique derived name. 
+    int numName; // Num name will be used as the numerical representation of
+                 // an animals name in the BST.
+    
+    int dupNum = 1; // Integer representing decimal form of number appended to the 
+                    // name to build the unique derived name. 
+
+     // Returns a *relatively* unique representation of a given string
+    int deriveNumericName(std::string name) {
+        int numericName = 0;
+        int temp = 0;
+
+        for (unsigned int i = 0; i < name.length(); ++i) {
+            temp = int(name.c_str()[i] - 31); // The subtraction of 31 just 
+                                              // makes the starting numbers as
+                                              // small as possible. Since
+                                              // names might have numbers or
+                                              // spaces, we can't subtract
+                                              // more than 31 (space is ascii
+                                              // 32)
+            temp = pow(temp, 2); // Square temp
+            numericName = numericName + temp;
+        }
+        numericName = numericName * name.length();
+        return numericName;
+    }
+
 
 public:
     
@@ -26,7 +48,16 @@ public:
     };
     void setName(std::string str){
         name = str;
+        baseName = str;
+        numName = deriveNumericName(str);
     };
+
+    // Changes the name whithout changing the  "base name"
+    void changeName(std::string str){
+        name = str;
+        numName = deriveNumericName(str);
+    }
+
     void setAge(double d){
         age = d;
     };
@@ -48,6 +79,10 @@ public:
     };
     // We don't need a "decrementFriendliness()" method since the friendliness
     // of an animal never decreases (according to the spec)
+
+    void setDupNum(int i){
+        dupNum = i;
+    };
 
     void feed(double amnt) {
         hunger = hunger - 1;
@@ -78,18 +113,46 @@ public:
 
     }
 
+   
+    void refreshNumName() {
+        numName = deriveNumericName(name);
+    }
+
 
     double getHunger(){   return hunger; };
     double getFriendly(){ return friendliness; };
     double getWeight(){   return weight; };
     double getAge(){      return age; };
 
+    int getNumName() const { return numName; }; // Const is only there because it's required for the operator overloading
+    int getDupNum() {return dupNum; };
+
+    std::string getBaseName(){ return baseName; };
     std::string getName(){ return name; };
 
     virtual std::string getType(){ return std::string("I AM AN ANIMAL B)"); };
     virtual std::string getGreeting(){ return std::string("WAZZUUUUUP!?");};
 
-    /* data */
+        
+    // Well, here I REALLY don't know what I'm doing. This train wreck's gonna
+    // be pretty bad :(
+
+    // Checking equality of two animals checks if their numericNames are equal
+    friend bool operator == (const animals_c &animal1, const animals_c &animal2) {
+        // std::cout << "  Calling equal on two animals." << std::endl;
+        return (animal1.getNumName() == animal2.getNumName());
+    }
+
+    // Check if first (left hand) is smaller than second (right hand)
+    friend bool operator < (const animals_c &animal1, const animals_c &animal2) {
+        return (animal1.getNumName() < animal2.getNumName());
+    }
+
+    // Check if first (left hand) is *larger* than second (right hand)
+    friend bool operator > (const animals_c &animal1, const animals_c &animal2) {
+        return (animal1.getNumName() > animal2.getNumName() );
+    }
+
 };
 
 
@@ -141,10 +204,7 @@ public:
 //     /_____/_/ |_/_____/   \____/_/       \____/_____/_/  |_/____/____/_____//____/  
 */                                                                                 
 
-// // Reverses the order of the zoo. Primarily used after we sort by pecking order.
-// std::vector<animals_c*> reverseZoo(std::std::vector<animals_c*> zoo) {
 
-// }
 
 
 bool weightComp(animals_c* const& animal1, animals_c* const& animal2 ) {
@@ -207,9 +267,41 @@ std::vector<animals_c*> buildZoo(std::vector<animal_ts> animals){
         zoo[i]->setWeight(      strToDub(animals[i].weight));
         zoo[i]->setHunger(      strToDub(animals[i].hunger));
         zoo[i]->setFriendliness(strToDub(animals[i].friendliness));
+        zoo[i]->refreshNumName();
         
     }
 
 
     return zoo;
 };
+
+// Takes two animals, modifying the seconds name if they're initially the same
+void fixSameName(animals_c* animal1, animals_c* animal2){
+    // Compare the names of animal1 and animal2
+    if (*animal1 == *animal2) {
+        // They're equal, so we increment the duplicate name of our animal
+        animal2->setDupNum(animal2->getDupNum()+1);
+        // Change the name of animal2, adding the roman numeral representation of our animal
+        animal2->changeName( animal2->getBaseName() + iToRoman(animal2->getDupNum()) );
+
+    }
+}
+
+int compareStrToAnimal(animals_c* animal, std::string str) {
+
+    if (DEBUG){
+        std::cout << "Animal Name : '"<< animal->getName() << "'" << std::endl;
+        std::cout << "Input String: '"<< str << "'" << std::endl;
+    }
+
+    if (str == animal->getName()){
+        animal->print();
+        return 1;
+    }
+    // Implicit else: (if the names aren't the same)
+    return 0;
+}
+
+
+
+

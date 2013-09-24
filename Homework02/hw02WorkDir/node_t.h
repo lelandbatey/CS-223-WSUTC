@@ -12,6 +12,7 @@
 // just needed some style/formatting guidance. And, I have the git commits to
 // prove it!
 
+// Also, I'm altering this a bit for use with my animals class.
 
 template <class T>
 class node_t

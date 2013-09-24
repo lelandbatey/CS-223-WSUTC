@@ -5,9 +5,12 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <math.h>
+#include <stdio.h>
 #include "lfbLib.h"
 #include "readAnimalCsv.cpp"
 #include "animals_c.h"
+#include "tree_t.h"
 
 
 void printZoo(std::vector<animals_c*> zoo) {
@@ -20,7 +23,9 @@ void printZoo(std::vector<animals_c*> zoo) {
         std::cout <<"Age          : '"<< zoo[i]->getAge()      << "' : " << typeid( zoo[i]->getAge()      ).name() << std::endl;
         std::cout <<"Friendliness : '"<< zoo[i]->getFriendly() << "' : " << typeid( zoo[i]->getFriendly() ).name() << std::endl;
         std::cout <<"Weight       : '"<< zoo[i]->getWeight()   << "' : " << typeid( zoo[i]->getWeight()   ).name() << std::endl;
-        std::cout <<"Hunger       : '"<< zoo[i]->getHunger()   << "' : " << typeid( zoo[i]->getHunger()   ).name() << std::endl << std::endl;
+        std::cout <<"Hunger       : '"<< zoo[i]->getHunger()   << "' : " << typeid( zoo[i]->getHunger()   ).name() << std::endl;
+        std::cout <<"Base Name    : '"<< zoo[i]->getBaseName() << "' : " << std::endl;
+        std::cout <<"Numeric Name : '"<< zoo[i]->getNumName()  << "' : " << std::endl << std::endl; 
     }
 }
 
@@ -41,9 +46,10 @@ int main(int argc, char const *argv[])
     std::string fileName = std::string(argv[1]);
     std::vector<animal_ts> animals = getAnimals(fileName); // Builds a vector of pointers to animals
     std::string input;
+    std::string otherIn;
 
 
-    if (DEBUG_FLAG) {
+    if (DEBUG) {
         std::cout <<" Size of animals vector: '" << animals.size() << "'" << std::endl;
         for (int i = 0; i < actualAnimals(animals); ++i)
         {
@@ -62,7 +68,7 @@ int main(int argc, char const *argv[])
 
 
 
-    if (DEBUG_FLAG) {
+    if (DEBUG) {
         printZoo(zoo);
     }
 
@@ -90,13 +96,40 @@ int main(int argc, char const *argv[])
     }
 
 
-    
+    // EASILY the dirtiest thing I'll do in this entire program.
+    //
+    // Builds a "garbage" binary search tree that we'll never use for
+    // anything. However, when we build a BST, it does the name fixing. So, we
+    // build this bst literally JUST because it will do the name fixing for
+    // us.
+    //
+    // This is disgusting.
+    tree_t<animals_c*> garbagebst; 
+    garbagebst.setEqFunc(&fixSameName);
+    // Build the BST!
+    for (unsigned int i = 0; i < zoo.size(); i++) {
+        garbagebst.add(zoo[i]);
+    }
+    garbagebst.setFindEqFunc(&compareStrToAnimal);
+
+
     // Get input loop and execute commands
 
     while (!doneFlag) {
         input = "";
-        std::cin >> input;
+        // std::cin.ignore(500,' ') >> input;
+        // std::cin >> input;
+        std::getline(std::cin, input);
+        otherIn = getAfter(input," ");
+        input = getBefore(input," ");
+
         input = strUpper(input);
+        otherIn = strUpper(otherIn);
+
+        if (DEBUG){
+            std::cout << "Input  : '" << input << "'" << std::endl;
+            std::cout << "OtherIn: '" << otherIn << "'" << std::endl;
+        }
 
         if (input == "EXIT") {
             
@@ -107,11 +140,12 @@ int main(int argc, char const *argv[])
             
             // get the number that comes after "FEED"
             // feedAmnt = strToDub(getAfter(input,spaceDelim));
-            std::cin >> feedAmnt; // Boom, we got the amount to feed our dudes by.
+            // std::cin >> feedAmnt; // Boom, we got the amount to feed our dudes by.
+            feedAmnt = strToDub(otherIn);
             feedAll(zoo, feedAmnt);
             zoo = sortZooWeight(zoo);
             
-            if (DEBUG_FLAG) {
+            if (DEBUG) {
                 printZoo(zoo);
             }
 
@@ -120,7 +154,7 @@ int main(int argc, char const *argv[])
             petAll(zoo);
             zoo = sortZooFriendly(zoo);
 
-            if (DEBUG_FLAG) {
+            if (DEBUG) {
                 printZoo(zoo);
             }
         } else if ( input == "SPEAK") {
@@ -129,10 +163,29 @@ int main(int argc, char const *argv[])
             for (unsigned int i = 0; i < zoo.size(); ++i) {
                 zoo[i]->print();
             }
+        } else if ( input == "FIND") {
+
+            // std::cout<< "Name: '" << input << '\'' << std::endl;
+            
+            input = strUpper(input);
+
+            tree_t<animals_c*> bst;
+            bst.setEqFunc(&fixSameName);
+
+            // Build the BST!
+            for (unsigned int i = 0; i < zoo.size(); i++) {
+                bst.add(zoo[i]);
+            }
+
+            // bst.print();
+            bst.setFindEqFunc(&compareStrToAnimal);
+            bst.find(otherIn);
+
         }
 
 
     }
+
 
 
     return 0;

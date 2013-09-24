@@ -5,8 +5,8 @@
 // Will return a struct of type "animal" with string fields for all it's data.
 
 // Flag used for printing debug messages.
-// #ifndef DEBUG_FLAG
-// #define DEBUG_FLAG 1
+// #ifndef DEBUG
+// #define DEBUG 1
 // #endif
 
 
@@ -36,7 +36,7 @@ int actualAnimals(std::vector<animal_ts> animals){
 std::vector<animal_ts> getAnimals(std::string fileName){
     
     int totalLines = getLines(fileName);
-    if (DEBUG_FLAG){
+    if (DEBUG){
         std::cout << "\tTotal Lines in the file: " << totalLines << std::endl;
     }
 
@@ -51,7 +51,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
 
 
     std::vector<animal_ts> animalArray(totalLines);
-    if (DEBUG_FLAG){
+    if (DEBUG){
         std::cout << "  Size of animalArray: " << sizeof(animalArray) << std::endl;
     }
 
@@ -63,7 +63,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
     while (i < totalLines){
         getline(input, line, '\n'); // Get the line (the whole line)
         
-        if (DEBUG_FLAG) {
+        if (DEBUG) {
             std::cout << line << std::endl;
         }
 
@@ -79,7 +79,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
 
             next = line.find_first_of(delims, current);
 
-            if (DEBUG_FLAG) {
+            if (DEBUG) {
                 std::cout << "  Count   : '"<<  count  << "'" << std::endl;
                 std::cout << "  Current : '"<< current << "'" << std::endl;
                 std::cout << "  Next    : '"<<   next  << "'" << std::endl << std::endl;
