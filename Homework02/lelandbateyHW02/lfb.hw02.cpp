@@ -12,6 +12,37 @@
 #include "animals_c.h"
 #include "tree_t.h"
 
+//     ____  _________    ____  __  _________
+//    / __ \/ ____/   |  / __ \/  |/  / ____/
+//   / /_/ / __/ / /| | / / / / /|_/ / __/   
+//  / _, _/ /___/ ___ |/ /_/ / /  / / /___   
+// /_/ |_/_____/_/  |_/_____/_/  /_/_____/   
+                                          
+// Yeah, I'mma just put this right at the top.
+
+// I've put enough comments in this thing to not *necessarily* need to put a
+// ton of words here, so I think I'm good in that respect. However, there's
+// basically just ONE THING I want known here from the beginning:
+
+// ### 32-bit vs. 64-bit nearly killed me. ###
+
+// Seriously. I wrote this ENTIRE THING in a 32-bit environment and in a
+// 32-bit environment an unsigned int is JUST as big as an unsigned long. The
+// very common "std::string::npos" is technically an unsigned long, but all
+// the compiler warnings just said to make sure I was comparing "unsigned
+// types" so I made all my variables for comparison against std::string::npos
+// of the type unsigned int.
+//
+// Then, when I went to run this thing on elec, suddenly *NOTHING WORKED*
+// because the comparisons to see if things were equal to std::string::npos
+// (to check if we'd hit the end of the string) didn't work at all and I
+// couldn't figure out why. That was honestly the most frightening coding
+// experience I've ever had.
+
+// __)   __)
+// (0)   (0)
+//    ___
+
 
 void printZoo(std::vector<animals_c*> zoo) {
     std::cout <<" Size of ZOO! vector: '" << zoo.size() << "'" << std::endl;

@@ -17,8 +17,8 @@ private:
     int numName; // Num name will be used as the numerical representation of
                  // an animals name in the BST.
     
-    int dupNum = 1; // Integer representing decimal form of number appended to the 
-                    // name to build the unique derived name. 
+    int dupNum; // Integer representing decimal form of number appended to the 
+                // name to build the unique derived name. 
 
      // Returns a *relatively* unique representation of a given string
     int deriveNumericName(std::string name) {
@@ -42,6 +42,10 @@ private:
 
 
 public:
+
+    animals_c(){
+        dupNum = 1;
+    }
     
     void setWeight(double d){
         weight = d;

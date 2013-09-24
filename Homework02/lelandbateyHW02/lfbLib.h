@@ -30,10 +30,12 @@
 #define FALSE 0
 #endif
 
+
+
 // Returns everything in a string that comes after a delimiter. If the
 // delimiter isn't present, it just returns the input string.
 std::string getAfter(std::string input, std::string delimiter) {
-    unsigned int i;
+    unsigned long long i;
 
     i = input.find_first_of(delimiter);
 
@@ -53,7 +55,7 @@ std::string getAfter(std::string input, std::string delimiter) {
 // Returns everything that comes "before" a delimiter. If the delimiter isn't
 // present, it returns the input string.
 std::string getBefore(std::string input, std::string delimiter) {
-    unsigned int i;
+    unsigned long long i;
     i = input.find_first_of(delimiter);
 
     // if (DEBUG){

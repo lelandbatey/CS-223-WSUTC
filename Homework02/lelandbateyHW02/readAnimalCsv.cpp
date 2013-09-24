@@ -45,7 +45,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
     std::string delims = ",";
     std::string line;
 
-    unsigned int next; // Needs to be unsigned to stop warning when later compared with std::string
+    unsigned long long next; // Needs to be unsigned to stop warning when later compared with std::string
     int count, current, i;
     count = current = next = i = 0;
 
@@ -69,7 +69,9 @@ std::vector<animal_ts> getAnimals(std::string fileName){
 
         // Gotta zero this out for each re-loop, otherwise it won't read any
         // but the first lines.
-        count = current = next = 0;
+        count = 0;
+        current = 0;
+        next = 0;
 
         while(next != std::string::npos){
             
@@ -113,7 +115,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
             case 6:
                 animalArray[i].hunger    =    strFlog(line.substr(current, next - current));
             }
-
+            
         }
         i++;
     }
