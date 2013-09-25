@@ -1,11 +1,11 @@
-ANIMAL TYPE, NAME,      AGE,   FRIENDLINESS, WEIGHT, HUNGER
-DOG,         FIDO,10,5,30,5
-DOG,         FIDO,20,10,60,10
-COW,         BESSY,4,10,100,10
-dog,         fifi,10,5,30,5
-cat,         mimi,14,2,15,1000
-cat,         derp,10,3,18,500
-dog,         BOJANGLES,3,200.5,90,30
+ANIMAL TYPE, NAME,AGE,FRIENDLINESS, WEIGHT, HUNGER
+DOG,FIDO,10,5,30,5
+DOG,FIDO,20,10,60,10
+COW,BESSY,4,10,100,10
+dog,fifi,10,5,30,5
+cat,mimi,14,2,15,1000
+cat,derp,10,3,18,500
+dog,BOJANGLES,3,200.5,90,30
 dog,fido,10,4,14,2
 dog,fido,10,4,14,2
 dog,fido,10,4,14,2
