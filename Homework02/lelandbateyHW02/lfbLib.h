@@ -137,10 +137,9 @@ int upper(int c)
 // std::transform(s.begin(), s.end(), s.begin(), upper);
 
 
-// Convenience function that uppercases strings and removes whitespace (spaces)
+// Convenience function that uppercases strings
 std::string strFlog(std::string str) {
     std::transform(str.begin(), str.end(), str.begin(), upper); // Make it uppercase
-    str = whiteStrip(str);
 
     return str;
 }

@@ -44,6 +44,15 @@
 //    ___
 
 
+// Additionally, there's a bug that happens when an animal with the name
+// "someName romanNumeral" is already in the CSV. I assumed that since names
+// that are read out of the CSV file should pretty much not be changed aside
+// from appending, it can occur where you'll end up with something like a
+// "fido II" and a "fido II II". However, this only happens under some very
+// particular circumstances, and is done intentionally to preserve the data.
+// You can read more about it in the "animals_c.h" file, where I describe the
+// bug and the reasons for it existing in greater detail.
+
 void printZoo(std::vector<animals_c*> zoo) {
     std::cout <<" Size of ZOO! vector: '" << zoo.size() << "'" << std::endl;
     for (unsigned int i = 0; i < zoo.size(); ++i)
@@ -134,21 +143,14 @@ int main(int argc, char const *argv[])
     }
 
 
-    // EASILY the dirtiest thing I'll do in this entire program.
-    //
-    // Builds a "garbage" binary search tree that we'll never use for
-    // anything. However, when we build a BST, it does the name collision
-    // detection and fixing. So, we build this bst literally JUST because it
-    // will modify the animals names for us.
-    //
-    // This is disgusting. I feel so dirty :C
-    tree_t<animals_c*> garbagebst; 
-    garbagebst.setEqFunc(&fixSameName);
+    // Set's up our binary search tree!
+    tree_t<animals_c*> bst; 
+    bst.setEqFunc(&fixSameName);
     // Build the BST!
     for (unsigned int i = 0; i < zoo.size(); i++) {
-        garbagebst.add(zoo[i]);
+        bst.add(zoo[i]);
     }
-    garbagebst.setFindEqFunc(&compareStrToAnimal);
+    bst.setFindEqFunc(&compareStrToAnimal);
 
 
     // Get input loop and execute commands
@@ -209,26 +211,12 @@ int main(int argc, char const *argv[])
             }
         } else if ( input == "FIND") {
 
-            tree_t<animals_c*> bst;
-            bst.setEqFunc(&fixSameName);
-
-            // Build the BST!
-            for (unsigned int i = 0; i < zoo.size(); i++) {
-                bst.add(zoo[i]);
-            }
-            bst.setFindEqFunc(&compareStrToAnimal);
             bst.find(otherIn);
 
         } else if ( input == "PRINT"){ // HOLY SHARK BAIT BATMAN, EXTRA FEATURES?!?!
             input = strUpper(input);
 
-            tree_t<animals_c*> bst;
-            bst.setEqFunc(&fixSameName);
-            bst.setFindEqFunc(&compareStrToAnimal);
-            // Build the BST!
-            for (unsigned int i = 0; i < zoo.size(); i++) {
-                bst.add(zoo[i]);
-            }
+            
             bst.print();
         }
 

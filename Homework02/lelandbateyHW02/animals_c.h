@@ -102,17 +102,17 @@ public:
         std::cout.width(10);
 
         std::cout << getGreeting() << ",";
-        std::cout.width(10);
+        std::cout.width(6);
         std::cout << getType() << ",";
-        std::cout.width(10);
+        std::cout.width(14);
         std::cout << getName() << ",";
-        std::cout.width(10);
+        std::cout.width(6);
         std::cout << getAge() << ",";
-        std::cout.width(10);
+        std::cout.width(6);
         std::cout << getFriendly() << ",";
-        std::cout.width(10);
+        std::cout.width(6);
         std::cout << getWeight() << ",";
-        std::cout.width(10);
+        std::cout.width(6);
         std::cout << getHunger() << std::endl;
 
     }
@@ -297,6 +297,42 @@ std::vector<animals_c*> buildZoo(std::vector<animal_ts> animals){
 // finds that their names are equal. It mutates the name of the animal that's
 // trying to be inserted (animal2) by taking it's "base name" and adding the
 // appropriate roman-numeral suffix to the end.
+
+// A bug that happens is if you have a "fido" in the spreadsheet and a "fido
+// II" in the spreadsheet, the "fido II" might be renamed "fido II" if he's
+// inserted late into the game and previous fido's have come before him. This
+// is because his "base name", or his original name, was "fido II" already. I
+// don't take the names and break them up try to find their "true" base name,
+// it's just entered naively. However, if it's inserted into the BST before
+// other fido's, then since their base names are just "fido" they can be
+// renamed appropriately.
+//
+// So, if this is what our CSV looks like and it's read in from top to bottom:
+//
+//     dog,fido,10,4,14,2
+//     dog,fido,10,4,14,2
+//     dog,fido ii,13,4,2,1
+//
+// Then the dog named "fido ii" would be renamed to "fido II II" since his
+// base name is "fido II" already. However, this is what the CSV looks like:
+//
+//     dog,fido ii,13,4,2,1
+//     dog,fido,10,4,14,2
+//     dog,fido,10,4,14,2
+//
+// Then the dog "fido II" would not be renamed, since he would be inserted
+// before the others, preventing him colliding, which prevents the odd
+// renaming conventions.
+//
+//   It's a Feature, not a bug!
+//                             -- Management
+//
+// I chose to not fix this bug (aside from time constraints) because I assume
+// that we're not supposed to "take away" from the data read from the CSV,
+// only add to it. If we were to try to decipher roman numerals out of the
+// data, we could very easily damage the data we've read in, so instead I've
+// chosen to take a "safer", but naive, approach.
+
 
 // Takes two animals, modifying the seconds name if they're initially the same
 void fixSameName(animals_c* animal1, animals_c* animal2){
