@@ -125,11 +125,11 @@ int main(int argc, char const *argv[])
             NOTE: 0 is not a negative (or positive) value. So weight and age cannot be less than 0.
 */
     for (unsigned int i = 0; i < zoo.size(); ++i) {
-        if (zoo[i]->getAge() < 0) {
+        if (zoo[i]->getAge() < 1) {
             std::cout << "Incorrect Weight Found" << std::endl;
             doneFlag = TRUE;
             break;
-        } else if (zoo[i]->getWeight() < 0) {
+        } else if (zoo[i]->getWeight() < 1) {
             std::cout << "Incorrect Age Found" << std::endl;
             doneFlag = TRUE;
             break; // We don't want to print out "incorrect <thing> found" 
