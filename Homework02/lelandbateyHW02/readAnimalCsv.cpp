@@ -98,7 +98,7 @@ std::vector<animal_ts> getAnimals(std::string fileName){
             // it'll be just me, and it'll be this semester. So THERE!
             switch (count) {
             case 1:
-                animalArray[i].type      =    strFlog( line.substr(current, next-current) );
+                animalArray[i].type      =    whiteStrip( strFlog( line.substr(current, next-current) ) );
                 break;
             case 2:
                 animalArray[i].name      =    strFlog(line.substr(current, next-current));

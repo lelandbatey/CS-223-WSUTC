@@ -99,6 +99,21 @@ double strToDub(std::string str){
     return result;
 }
 
+// Converts double to std::string
+std::string dubToStr(double dub) {
+    // const int i = 3;
+    // std::ostringstream s;
+    // s << i;
+    // const std::string i_as_string(s.str());
+    std::ostringstream temp;
+
+    temp << dub;
+    
+    std::string result(temp.str());
+    // std::cout << result << std::endl;
+    return result; 
+}
+
 
 // Returns number of lines in a file.
 int getLines(std::string fileName) {
@@ -196,24 +211,30 @@ std::string iToRoman(int i) {
 //
 // It won't make numbers to large to fit in an int (at least for relatively
 // small strings), but they'll be at least *close* to unique.
-int deriveNumericName(std::string name) {
-    int numericName = 0;
-    int temp = 0;
+// int deriveNumericName(std::string name) {
+//     std::cout << "WHAT IS HAPPENING?" << std::endl;
+//     int numericName = 0;
+//     int temp = 0;
+    
 
-    for (unsigned int i = 0; i < name.length(); ++i) {
-        
-        temp = int(name.c_str()[i]) - 31;
+//     for (unsigned int i = 0; i < name.length(); ++i) {
+//         iTemp = name[i];
+//         oTemp << dubToStr(strToDub(iTemp));
 
-        temp = pow(temp,2); // Square temp
+//         temp = int(name.c_str()[i]) - 41;
 
-        numericName = numericName + temp;
-    }
+//         temp = pow(temp,3); // Square temp
 
-    numericName = numericName * name.length();
+//         numericName = numericName + temp;
+//     }
 
-    return numericName;
+//     numericName = numericName * name.length();
 
-}
+//     std::cout << oTemp.str() << std::endl;
+
+//     return numericName;
+
+// }
 
 
 

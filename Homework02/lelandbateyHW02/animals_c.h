@@ -24,6 +24,8 @@ private:
     int deriveNumericName(std::string name) {
         int numericName = 0;
         int temp = 0;
+        double iTemp;
+        std::stringstream oTemp;
 
         for (unsigned int i = 0; i < name.length(); ++i) {
             temp = int(name.c_str()[i] - 31); // The subtraction of 31 just 
@@ -33,10 +35,16 @@ private:
                                               // spaces, we can't subtract
                                               // more than 31 (space is ascii
                                               // 32)
-            temp = pow(temp, 2); // Square temp
+            
+            iTemp = double(name.c_str()[i] - 41);
+            oTemp << dubToStr(iTemp);
+
+
+            temp = pow(temp, 4); // Square temp
             numericName = numericName + temp;
         }
         numericName = numericName * name.length();
+        // std::cout << oTemp.str() << std::endl;
         return numericName;
     }
 
@@ -99,20 +107,20 @@ public:
         // Prints out the attributes of the instance of this animal.
         // uses "std::cout.width" to set the appropriate width.
 
-        std::cout.width(10);
+        // std::cout.width(10);
 
         std::cout << getGreeting() << ",";
-        std::cout.width(6);
+        // std::cout.width(6);
         std::cout << getType() << ",";
-        std::cout.width(14);
+        // std::cout.width(14);
         std::cout << getName() << ",";
-        std::cout.width(6);
+        // std::cout.width(6);
         std::cout << getAge() << ",";
-        std::cout.width(6);
+        // std::cout.width(6);
         std::cout << getFriendly() << ",";
-        std::cout.width(6);
+        // std::cout.width(6);
         std::cout << getWeight() << ",";
-        std::cout.width(6);
+        // std::cout.width(6);
         std::cout << getHunger() << std::endl;
 
     }
@@ -286,6 +294,7 @@ std::vector<animals_c*> buildZoo(std::vector<animal_ts> animals){
         zoo[i]->setFriendliness(strToDub(animals[i].friendliness));
         zoo[i]->refreshNumName();
         
+        // zoo[i]->print();
     }
 
 

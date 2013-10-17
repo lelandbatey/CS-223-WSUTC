@@ -53,6 +53,21 @@
 // You can read more about it in the "animals_c.h" file, where I describe the
 // bug and the reasons for it existing in greater detail.
 
+
+//     ____  ____  ___________   _________    ______       _______    _____    __    __  _____  ______________  _   __
+//    / __ \/ __ \/ ___/_  __/  / ____/   |  /  _/ /      / ____/ |  / /   |  / /   / / / /   |/_  __/  _/ __ \/ | / /
+//   / /_/ / / / /\__ \ / /    / /_  / /| |  / // /      / __/  | | / / /| | / /   / / / / /| | / /  / // / / /  |/ / 
+//  / ____/ /_/ /___/ // /    / __/ / ___ |_/ // /___   / /___  | |/ / ___ |/ /___/ /_/ / ___ |/ / _/ // /_/ / /|  /  
+// /_/    \____//____//_/    /_/   /_/  |_/___/_____/  /_____/  |___/_/  |_/_____/\____/_/  |_/_/ /___/\____/_/ |_/   
+                                                                                                                   
+// I found two places where my program will segfault:
+
+// 1. When there are more than 10 animals with the same name in the csv
+// 2. When there is a space in the animal type
+
+// Both of those are now fixed.
+
+
 void printZoo(std::vector<animals_c*> zoo) {
     std::cout <<" Size of ZOO! vector: '" << zoo.size() << "'" << std::endl;
     for (unsigned int i = 0; i < zoo.size(); ++i)

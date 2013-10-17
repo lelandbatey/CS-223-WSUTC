@@ -14,7 +14,8 @@ private:
     void addNode(T &inVal, node_t<T>*& inNode) {
         if ( inNode == NULL ){
             inNode = new node_t<T>();
-            inNode->setVal(inVal);   
+            inNode->setVal(inVal);
+            // inNode->getVal()->print(); // Here we print the value of the node
         } else if (*(inNode->getVal()) > *(inVal)) {
             addNode(inVal, inNode->getRight());
         } else if (  *(inNode->getVal())   < *(inVal) ) {
