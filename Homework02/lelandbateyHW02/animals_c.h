@@ -42,6 +42,7 @@ private:
 
             temp = pow(temp, 4); // Square temp
             numericName = numericName + temp;
+            numericName = numericName * i;
         }
         numericName = numericName * name.length();
         // std::cout << oTemp.str() << std::endl;
@@ -107,20 +108,20 @@ public:
         // Prints out the attributes of the instance of this animal.
         // uses "std::cout.width" to set the appropriate width.
 
-        // std::cout.width(10);
+        std::cout.width(10);
 
         std::cout << getGreeting() << ",";
-        // std::cout.width(6);
+        std::cout.width(6);
         std::cout << getType() << ",";
-        // std::cout.width(14);
+        std::cout.width(14);
         std::cout << getName() << ",";
-        // std::cout.width(6);
+        std::cout.width(6);
         std::cout << getAge() << ",";
-        // std::cout.width(6);
+        std::cout.width(6);
         std::cout << getFriendly() << ",";
-        // std::cout.width(6);
+        std::cout.width(6);
         std::cout << getWeight() << ",";
-        // std::cout.width(6);
+        std::cout.width(6);
         std::cout << getHunger() << std::endl;
 
     }
