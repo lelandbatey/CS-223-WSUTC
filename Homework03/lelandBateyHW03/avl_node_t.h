@@ -51,6 +51,10 @@ public:
         return left;
     }; 
     
+    node_t*& getParent() {
+        return parent;
+    }; 
+
     void setLeft(node_t* node) {
         left = node;
     };

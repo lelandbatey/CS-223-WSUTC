@@ -87,6 +87,24 @@ private:
         }
     }
 
+    void prntNodeInfo(node_t<T>*& node){
+
+        // Print info about this node
+        // 
+
+        if (DEBUG) {
+            std::cout << "\t-- Printing Node Information : --"   << std::endl;
+            std::cout << "\tAddress     : " << node              << std::endl;
+            std::cout << "\tValue       : " << node->getVal()    << std::endl;
+            std::cout << "\tLeft Child  : " << node->getLeft()   << std::endl;
+            std::cout << "\tRight Child : " << node->getRight()  << std::endl;
+            std::cout << "\tParent Node : " << node->getParent() << std::endl;
+        }
+
+
+    }
+
+
     void recursePrint(node_t<T>*& node) {
         
         if (DEBUG){
@@ -103,7 +121,8 @@ private:
             }
         }
         // node->getVal()->print();
-        std::cout << node->getVal()->getVal() << std::endl;
+        // std::cout << node->getVal()->getVal() << std::endl;
+        prntNodeInfo(node);
 
         if (node->getRight()) {
             recursePrint(node->getRight());
@@ -113,6 +132,7 @@ private:
             }
         }
     }
+
 
     void (*eqFunc)(T,T); 
     // Ok, this things pretty gnarly, I'll explain:
