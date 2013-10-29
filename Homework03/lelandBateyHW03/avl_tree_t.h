@@ -1,6 +1,14 @@
 #include "avl_node_t.h"
 #include <iostream>
 
+#ifndef _RIGHT_
+#define _RIGHT_ 0
+#endif
+
+#ifndef _LEFT_
+#define _LEFT_ 1
+#endif
+
 template <class T>
 class tree_t
 {
@@ -15,8 +23,11 @@ private:
 
         if (DEBUG) {
             std::cout << "\t-- Printing addNode Info: --" << std::endl;
-            std::cout << "\tInput Value : " << inVal << std::endl;
+            std::cout << "\tInput Value : " << inVal->getVal() << std::endl;
             std::cout << "\tinNode      : " << inNode << std::endl;
+            if (inNode && inNode->getVal()) {            
+                std::cout << "\tinNode Value: " << inNode->getVal()->getVal() << std::endl;
+            }
             std::cout << "\tParent Node : " << parentNode << std::endl;
         }
 
@@ -28,50 +39,59 @@ private:
         } else if (*(inNode->getVal()) > *(inVal)) {
 
             if (DEBUG) {
-                std::cout << "\t Current node is greater than value to be input." << std::endl;
+                std::cout << "\t Insert-value is smaller than current node. ";
+                std::cout << inNode->getVal()->getVal() << " > " << inVal->getVal() << std::endl;
+                std::cout << "\t Going to the left." << std::endl;
             }
 
-            addNode(inVal, inNode->getRight(), inNode);
+            addNode(inVal, inNode->getLeft(), inNode);
 
-            // BALANCING TREE
-            // If the heights are imbalanced
-            if (abs( height(inNode->getRight()) - height(inNode->getLeft()))==2) {
-                // If the right hand side is imbalanced
-                if (inVal > inNode->getRight()->getVal()){
-                    // Single rotation right
-                    rotateRight(inNode);
-                } else {
-                    // Else, double rotation Left-Right
-                    rotateLR(inNode);
-                }
+            nodeBalance(inVal,inNode, _LEFT_);
 
-            }
+            // if (inNode) {
+            //     // BALANCING TREE
+            //     // If the heights are imbalanced
+
+
+            //     if (abs( height(inNode->getRight()) - height(inNode->getLeft()))==2) {
+            //         std::cout << "\t Balance is: " << getHeight(inNode) << std::endl;
+            //         prntNodeInfo(inNode);
+            //         // If the right hand side is imbalanced
+            //         if ( inNode->getRight()) {
+            //             if (inVal > inNode->getRight()->getVal()){
+            //                 // Single rotation right
+            //                 rotateRight(inNode);
+            //             } else {
+            //                 // Else, double rotation Left-Right
+            //                 rotateLR(inNode);
+            //             }
+            //         } else {
+            //             // On the off chance there *is* no right node :)
+            //             rotateLR(inNode);
+            //         }
+            //     }
+            // }
 
         } else if (  *(inNode->getVal()) < *(inVal) ) {
 
             if (DEBUG) {
-                std::cout << "\t Current node is smaller than value being input." << std::endl;
+                std::cout << "\t Insert-value is larger than current node. ";
+                std::cout << inNode->getVal()->getVal() << " < " << inVal->getVal() << std::endl;
+                std::cout << "\t Going to the right" << std::endl;
             }
 
 
-            addNode(inVal, inNode->getLeft(), inNode);
+            addNode(inVal, inNode->getRight(), inNode);
 
+            nodeBalance(inVal,inNode,_RIGHT_);
 
-            // BALANCING TREE
-            // If the heights are imbalanced
-            if (abs( height(inNode->getLeft()) - height(inNode->getRight()))==2) {
-                if (inVal > inNode->getLeft()->getVal()){
-                    // Single rotation left
-                    rotateLeft(inNode);
-                } else {
-                    // Else, double rotate Right-Left
-                    rotateRL(inNode);
-                }
-            }
+            
 
         } else if ( *(inNode->getVal()) == *(inVal) ){
             
             if (eqFunc){
+
+                std::cout << "DANGER WILL ROBINSON THESE ARE EQUAL!!" << std::endl;
                 eqFunc( inNode->getVal(), inVal ); // The variables that's needed 
                 addNode(inVal, inNode, parentNode);
             }
@@ -87,6 +107,48 @@ private:
         }
     }
 
+    void nodeBalance(T& inVal, node_t<T>*& inNode, int direction){
+
+        // GIGANTIC FUNCTION for balancing a node/subtree
+
+        // BALANCING TREE
+        // If the heights are imbalanced
+        // if (inNode) {
+        if (abs( height(inNode->getLeft()) - height(inNode->getRight()))==2) {
+            // std::cout << "\t Balance is: " << getHeight(inNode) << std::endl;
+            // prntNodeInfo(inNode);
+
+            if (direction == _LEFT_) {
+                if (inNode->getLeft()) {
+                    if (inVal > inNode->getLeft()->getVal()){
+                        // Single rotation left
+                        rotateLeft(inNode);
+                    } else {
+                        // Else, double rotate Right-Left
+                        rotateRL(inNode);
+                    }
+                } else {
+                    rotateRL(inNode);
+                }
+            } else if ( direction == _RIGHT_) {
+                if ( inNode->getRight()) {
+                    if (inVal > inNode->getRight()->getVal()){
+                        // Single rotation right
+                        rotateRight(inNode);
+                    } else {
+                        // Else, double rotation Left-Right
+                        rotateLR(inNode);
+                    }
+                } else {
+                    // On the off chance there *is* no right node :)
+                    rotateLR(inNode);
+                }
+            }
+        }
+
+    }
+
+
     void prntNodeInfo(node_t<T>*& node){
 
         // Print info about this node
@@ -95,10 +157,19 @@ private:
         if (DEBUG) {
             std::cout << "\t-- Printing Node Information : --"   << std::endl;
             std::cout << "\tAddress     : " << node              << std::endl;
-            std::cout << "\tValue       : " << node->getVal()    << std::endl;
+            std::cout << "\tValue       : " << node->getVal()->getVal()    << std::endl;
             std::cout << "\tLeft Child  : " << node->getLeft()   << std::endl;
             std::cout << "\tRight Child : " << node->getRight()  << std::endl;
             std::cout << "\tParent Node : " << node->getParent() << std::endl;
+        }
+
+        if (LIGHT_DEBUG) {
+            std::cout << "\t-- Printing Node Information : --"   << std::endl;
+            std::cout << "\t A : " << node              << std::endl;
+            std::cout << "\t V : " << node->getVal()->getVal()    << std::endl;
+            std::cout << "\t L : " << node->getLeft()   << std::endl;
+            std::cout << "\t R : " << node->getRight()  << std::endl;
+            // std::cout << "\tParent Node : " << node->getParent() << std::endl;
         }
 
 
@@ -194,6 +265,10 @@ private:
     void rotateRight(node_t<T>*& node){
         node_t<T>* tempNode;
 
+        if (DEBUG) {
+            recursePrint(root);
+        }
+
         tempNode = node->getRight();
         node->setRight(tempNode->getLeft());
         tempNode->setLeft(node);
@@ -202,6 +277,10 @@ private:
 
     void rotateLeft(node_t<T>*& node){
         node_t<T>* tempNode;
+
+        if (DEBUG) {
+            recursePrint(root);
+        }
 
         tempNode = node->getLeft();
         node->setLeft(tempNode->getRight());
@@ -264,6 +343,10 @@ public:
         } else {
             return r+1;
         }
+    }
+
+    int getHeight(node_t<T>* node){
+        return ( height(node->getRight()) - height(node->getLeft()) );
     }
 
     void setEqFunc(void (*func)(T,T)){

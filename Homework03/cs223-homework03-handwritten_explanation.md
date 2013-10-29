@@ -1,7 +1,9 @@
 In this assignment you will create two separate programs (**avltree** and **btree**) that have a common theme: to read a file containing ASCII text of names of people. The file name should be specified on the command line as an argument. Each line should contain a name.
 
 > **Billy Bob**
+
 > **Johnny Sue**
+
 > **Sarah**
 
 Each line is considered to only contain a single name (spaces and other ASCII characters are considered valid for that name). I.E. each line can be considered to be unique and no parsin is required.

@@ -1,7 +1,11 @@
 
 
 #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
+#endif
+
+#ifndef LIGHT_DEBUG
+#define LIGHT_DEBUG 1
 #endif
 
 #include <iostream>
@@ -32,26 +36,14 @@ public:
     }
 
     friend bool operator ==(const tmp_c &tc1, const tmp_c &tc2) {
-        // std::cout << "  Checking Equality of two containers." << std::endl;
-        // std::cout << "  Container 1: " << tc1.value << std::endl;
-        // std::cout << "  Container 2: " << tc2.value << std::endl;
-        // std::cout << "  Truth Value: " << (tc1.value == tc2.value) << std::endl;
         return (tc1.value == tc2.value);
     }
 
     friend bool operator < (const tmp_c &tc1, const tmp_c &tc2) {
-        // std::cout << "  Checking 1 less than 2" << std::endl;
-        // std::cout << "  Container 1: " << tc1.value << std::endl;
-        // std::cout << "  Container 2: " << tc2.value << std::endl;
-        // std::cout << "  Truth Value: " << (tc1.value < tc1.value) << std::endl;
         return (tc1.value < tc2.value);
     }
 
     friend bool operator > (const tmp_c &tc1, const tmp_c &tc2) {
-        // std::cout << "  Checking 1 greater than 2" << std::endl;
-        // std::cout << "  Container 1: " << tc1.value << std::endl;
-        // std::cout << "  Container 2: " << tc2.value << std::endl;
-        // std::cout << "  Truth Value: " << (tc1.value < tc1.value) << std::endl;
         return (tc1.value > tc2.value);
     }
 };

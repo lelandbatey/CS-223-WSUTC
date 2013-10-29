@@ -1,399 +1,482 @@
 ./avl 2 7 12 17 23 22 33 37 5 15 25 35 10 30 20
 
+leland@leland-VirtualBox:
+~/school/cs223/Homework03/lelandBateyHW03 $ make && ./avl 2 7 12 17 23 22 33 37 5 15 25 35 10 30 20
+g++ -g -Wall cs223.lfb.hw03.cpp -o avl
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba010
+    Input Value : 2
     inNode      : 0
     Parent Node : 0
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba0e0
-    inNode      : 0x15ba030
+    Input Value : 7
+    inNode      : 0x1a59030
+    inNode Value: 2
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 2 < 7
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba0e0
+    Input Value : 7
     inNode      : 0
-    Parent Node : 0x15ba030
+    Parent Node : 0x1a59030
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba130
-    inNode      : 0x15ba030
+    Input Value : 12
+    inNode      : 0x1a59030
+    inNode Value: 2
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 2 < 12
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba130
-    inNode      : 0x15ba060
-    Parent Node : 0x15ba030
-     Current node is smaller than value being input.
+    Input Value : 12
+    inNode      : 0x1a59060
+    inNode Value: 7
+    Parent Node : 0x1a59030
+     Insert-value is larger than current node. 7 < 12
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba130
+    Input Value : 12
     inNode      : 0
-    Parent Node : 0x15ba060
+    Parent Node : 0x1a59060
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba180
-    inNode      : 0x15ba060
+    Input Value : 17
+    inNode      : 0x1a59060
+    inNode Value: 7
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 7 < 17
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba180
-    inNode      : 0x15ba100
-    Parent Node : 0x15ba060
-     Current node is smaller than value being input.
+    Input Value : 17
+    inNode      : 0x1a59100
+    inNode Value: 12
+    Parent Node : 0x1a59060
+     Insert-value is larger than current node. 12 < 17
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba180
+    Input Value : 17
     inNode      : 0
-    Parent Node : 0x15ba100
+    Parent Node : 0x1a59100
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba1d0
-    inNode      : 0x15ba060
+    Input Value : 23
+    inNode      : 0x1a59060
+    inNode Value: 7
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 7 < 23
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba1d0
-    inNode      : 0x15ba100
-    Parent Node : 0x15ba060
-     Current node is smaller than value being input.
+    Input Value : 23
+    inNode      : 0x1a59100
+    inNode Value: 12
+    Parent Node : 0x1a59060
+     Insert-value is larger than current node. 12 < 23
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba1d0
-    inNode      : 0x15ba150
-    Parent Node : 0x15ba100
-     Current node is smaller than value being input.
+    Input Value : 23
+    inNode      : 0x1a59150
+    inNode Value: 17
+    Parent Node : 0x1a59100
+     Insert-value is larger than current node. 17 < 23
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba1d0
+    Input Value : 23
     inNode      : 0
-    Parent Node : 0x15ba150
+    Parent Node : 0x1a59150
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba220
-    inNode      : 0x15ba060
+    Input Value : 22
+    inNode      : 0x1a59060
+    inNode Value: 7
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 7 < 22
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba220
-    inNode      : 0x15ba150
-    Parent Node : 0x15ba060
-     Current node is smaller than value being input.
+    Input Value : 22
+    inNode      : 0x1a59150
+    inNode Value: 17
+    Parent Node : 0x1a59060
+     Insert-value is larger than current node. 17 < 22
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba220
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba150
-     Current node is greater than value to be input.
+    Input Value : 22
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59150
+     Insert-value is smaller than current node. 23 > 22
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba220
+    Input Value : 22
     inNode      : 0
-    Parent Node : 0x15ba1a0
+    Parent Node : 0x1a591a0
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba270
-    inNode      : 0x15ba150
+    Input Value : 33
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 33
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba270
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 33
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 23 < 33
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba270
+    Input Value : 33
     inNode      : 0
-    Parent Node : 0x15ba1a0
+    Parent Node : 0x1a591a0
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba2c0
-    inNode      : 0x15ba150
+    Input Value : 37
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 37
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba2c0
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 37
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 23 < 37
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba2c0
-    inNode      : 0x15ba240
-    Parent Node : 0x15ba1a0
-     Current node is smaller than value being input.
+    Input Value : 37
+    inNode      : 0x1a59240
+    inNode Value: 33
+    Parent Node : 0x1a591a0
+     Insert-value is larger than current node. 33 < 37
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba2c0
+    Input Value : 37
     inNode      : 0
-    Parent Node : 0x15ba240
+    Parent Node : 0x1a59240
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba310
-    inNode      : 0x15ba150
+    Input Value : 5
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is greater than value to be input.
+     Insert-value is smaller than current node. 17 > 5
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba310
-    inNode      : 0x15ba060
-    Parent Node : 0x15ba150
-     Current node is greater than value to be input.
+    Input Value : 5
+    inNode      : 0x1a59060
+    inNode Value: 7
+    Parent Node : 0x1a59150
+     Insert-value is smaller than current node. 7 > 5
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba310
-    inNode      : 0x15ba030
-    Parent Node : 0x15ba060
-     Current node is smaller than value being input.
+    Input Value : 5
+    inNode      : 0x1a59030
+    inNode Value: 2
+    Parent Node : 0x1a59060
+     Insert-value is larger than current node. 2 < 5
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba310
+    Input Value : 5
     inNode      : 0
-    Parent Node : 0x15ba030
+    Parent Node : 0x1a59030
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba360
-    inNode      : 0x15ba150
+    Input Value : 15
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is greater than value to be input.
+     Insert-value is smaller than current node. 17 > 15
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba360
-    inNode      : 0x15ba060
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 15
+    inNode      : 0x1a59060
+    inNode Value: 7
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 7 < 15
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba360
-    inNode      : 0x15ba100
-    Parent Node : 0x15ba060
-     Current node is smaller than value being input.
+    Input Value : 15
+    inNode      : 0x1a59100
+    inNode Value: 12
+    Parent Node : 0x1a59060
+     Insert-value is larger than current node. 12 < 15
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba360
+    Input Value : 15
     inNode      : 0
-    Parent Node : 0x15ba100
+    Parent Node : 0x1a59100
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba3b0
-    inNode      : 0x15ba150
+    Input Value : 25
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 25
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba3b0
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 25
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 23 < 25
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba3b0
-    inNode      : 0x15ba240
-    Parent Node : 0x15ba1a0
-     Current node is greater than value to be input.
+    Input Value : 25
+    inNode      : 0x1a59240
+    inNode Value: 33
+    Parent Node : 0x1a591a0
+     Insert-value is smaller than current node. 33 > 25
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba3b0
+    Input Value : 25
     inNode      : 0
-    Parent Node : 0x15ba240
+    Parent Node : 0x1a59240
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba400
-    inNode      : 0x15ba150
+    Input Value : 35
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 35
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba400
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 35
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 23 < 35
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba400
-    inNode      : 0x15ba240
-    Parent Node : 0x15ba1a0
-     Current node is smaller than value being input.
+    Input Value : 35
+    inNode      : 0x1a59240
+    inNode Value: 33
+    Parent Node : 0x1a591a0
+     Insert-value is larger than current node. 33 < 35
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba400
-    inNode      : 0x15ba290
-    Parent Node : 0x15ba240
-     Current node is greater than value to be input.
+    Input Value : 35
+    inNode      : 0x1a59290
+    inNode Value: 37
+    Parent Node : 0x1a59240
+     Insert-value is smaller than current node. 37 > 35
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba400
+    Input Value : 35
     inNode      : 0
-    Parent Node : 0x15ba290
+    Parent Node : 0x1a59290
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba450
-    inNode      : 0x15ba150
+    Input Value : 10
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is greater than value to be input.
+     Insert-value is smaller than current node. 17 > 10
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba450
-    inNode      : 0x15ba060
-    Parent Node : 0x15ba150
-     Current node is smaller than value being input.
+    Input Value : 10
+    inNode      : 0x1a59060
+    inNode Value: 7
+    Parent Node : 0x1a59150
+     Insert-value is larger than current node. 7 < 10
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba450
-    inNode      : 0x15ba100
-    Parent Node : 0x15ba060
-     Current node is greater than value to be input.
+    Input Value : 10
+    inNode      : 0x1a59100
+    inNode Value: 12
+    Parent Node : 0x1a59060
+     Insert-value is smaller than current node. 12 > 10
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba450
+    Input Value : 10
     inNode      : 0
-    Parent Node : 0x15ba100
+    Parent Node : 0x1a59100
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba4a0
-    inNode      : 0x15ba150
+    Input Value : 30
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 30
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba4a0
-    inNode      : 0x15ba240
-    Parent Node : 0x15ba150
-     Current node is greater than value to be input.
+    Input Value : 30
+    inNode      : 0x1a59240
+    inNode Value: 33
+    Parent Node : 0x1a59150
+     Insert-value is smaller than current node. 33 > 30
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba4a0
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba240
-     Current node is smaller than value being input.
+    Input Value : 30
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59240
+     Insert-value is larger than current node. 23 < 30
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba4a0
-    inNode      : 0x15ba380
-    Parent Node : 0x15ba1a0
-     Current node is smaller than value being input.
+    Input Value : 30
+    inNode      : 0x1a59380
+    inNode Value: 25
+    Parent Node : 0x1a591a0
+     Insert-value is larger than current node. 25 < 30
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba4a0
+    Input Value : 30
     inNode      : 0
-    Parent Node : 0x15ba380
+    Parent Node : 0x1a59380
 Adding a node
     -- Printing addNode Info: --
-    Input Value : 0x15ba4f0
-    inNode      : 0x15ba150
+    Input Value : 20
+    inNode      : 0x1a59150
+    inNode Value: 17
     Parent Node : 0
-     Current node is smaller than value being input.
+     Insert-value is larger than current node. 17 < 20
+     Going to the left
     -- Printing addNode Info: --
-    Input Value : 0x15ba4f0
-    inNode      : 0x15ba240
-    Parent Node : 0x15ba150
-     Current node is greater than value to be input.
+    Input Value : 20
+    inNode      : 0x1a59240
+    inNode Value: 33
+    Parent Node : 0x1a59150
+     Insert-value is smaller than current node. 33 > 20
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba4f0
-    inNode      : 0x15ba1a0
-    Parent Node : 0x15ba240
-     Current node is greater than value to be input.
+    Input Value : 20
+    inNode      : 0x1a591a0
+    inNode Value: 23
+    Parent Node : 0x1a59240
+     Insert-value is smaller than current node. 23 > 20
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba4f0
-    inNode      : 0x15ba1f0
-    Parent Node : 0x15ba1a0
-     Current node is greater than value to be input.
+    Input Value : 20
+    inNode      : 0x1a591f0
+    inNode Value: 22
+    Parent Node : 0x1a591a0
+     Insert-value is smaller than current node. 22 > 20
+     Going to the right.
     -- Printing addNode Info: --
-    Input Value : 0x15ba4f0
+    Input Value : 20
     inNode      : 0
-    Parent Node : 0x15ba1f0
+    Parent Node : 0x1a591f0
  ## Printing the tree! ##
 Attempting to recurse to the left.
 Attempting to recurse to the left.
 Attempting to recurse to the left.
 This node had no LEFT child.
     -- Printing Node Information : --
-    Address     : 0x15ba290
-    Value       : 0x15ba2c0
+    Address     : 0x1a59290
+    Value       : 37
     Left Child  : 0
-    Right Child : 0x15ba3d0
-    Parent Node : 0x15ba240
+    Right Child : 0x1a593d0
+    Parent Node : 0x1a59240
 Attempting to recurse to the left.
 This node had no LEFT child.
     -- Printing Node Information : --
-    Address     : 0x15ba3d0
-    Value       : 0x15ba400
+    Address     : 0x1a593d0
+    Value       : 35
     Left Child  : 0
     Right Child : 0
-    Parent Node : 0x15ba290
+    Parent Node : 0x1a59290
 This node has no RIGHT child
     -- Printing Node Information : --
-    Address     : 0x15ba240
-    Value       : 0x15ba270
-    Left Child  : 0x15ba290
-    Right Child : 0x15ba1a0
-    Parent Node : 0x15ba1a0
-Attempting to recurse to the left.
-Attempting to recurse to the left.
-Attempting to recurse to the left.
-This node had no LEFT child.
-    -- Printing Node Information : --
-    Address     : 0x15ba470
-    Value       : 0x15ba4a0
-    Left Child  : 0
-    Right Child : 0
-    Parent Node : 0x15ba380
-This node has no RIGHT child
-    -- Printing Node Information : --
-    Address     : 0x15ba380
-    Value       : 0x15ba3b0
-    Left Child  : 0x15ba470
-    Right Child : 0
-    Parent Node : 0x15ba240
-This node has no RIGHT child
-    -- Printing Node Information : --
-    Address     : 0x15ba1a0
-    Value       : 0x15ba1d0
-    Left Child  : 0x15ba380
-    Right Child : 0x15ba1f0
-    Parent Node : 0x15ba150
-Attempting to recurse to the left.
-This node had no LEFT child.
-    -- Printing Node Information : --
-    Address     : 0x15ba1f0
-    Value       : 0x15ba220
-    Left Child  : 0
-    Right Child : 0x15ba4c0
-    Parent Node : 0x15ba1a0
-Attempting to recurse to the left.
-This node had no LEFT child.
-    -- Printing Node Information : --
-    Address     : 0x15ba4c0
-    Value       : 0x15ba4f0
-    Left Child  : 0
-    Right Child : 0
-    Parent Node : 0x15ba1f0
-This node has no RIGHT child
-    -- Printing Node Information : --
-    Address     : 0x15ba150
-    Value       : 0x15ba180
-    Left Child  : 0x15ba240
-    Right Child : 0x15ba060
-    Parent Node : 0x15ba100
+    Address     : 0x1a59240
+    Value       : 33
+    Left Child  : 0x1a59290
+    Right Child : 0x1a591a0
+    Parent Node : 0x1a591a0
 Attempting to recurse to the left.
 Attempting to recurse to the left.
 Attempting to recurse to the left.
 This node had no LEFT child.
     -- Printing Node Information : --
-    Address     : 0x15ba330
-    Value       : 0x15ba360
+    Address     : 0x1a59470
+    Value       : 30
     Left Child  : 0
     Right Child : 0
-    Parent Node : 0x15ba100
+    Parent Node : 0x1a59380
 This node has no RIGHT child
     -- Printing Node Information : --
-    Address     : 0x15ba100
-    Value       : 0x15ba130
-    Left Child  : 0x15ba330
-    Right Child : 0x15ba420
-    Parent Node : 0x15ba060
+    Address     : 0x1a59380
+    Value       : 25
+    Left Child  : 0x1a59470
+    Right Child : 0
+    Parent Node : 0x1a59240
+This node has no RIGHT child
+    -- Printing Node Information : --
+    Address     : 0x1a591a0
+    Value       : 23
+    Left Child  : 0x1a59380
+    Right Child : 0x1a591f0
+    Parent Node : 0x1a59150
 Attempting to recurse to the left.
 This node had no LEFT child.
     -- Printing Node Information : --
-    Address     : 0x15ba420
-    Value       : 0x15ba450
+    Address     : 0x1a591f0
+    Value       : 22
+    Left Child  : 0
+    Right Child : 0x1a594c0
+    Parent Node : 0x1a591a0
+Attempting to recurse to the left.
+This node had no LEFT child.
+    -- Printing Node Information : --
+    Address     : 0x1a594c0
+    Value       : 20
     Left Child  : 0
     Right Child : 0
-    Parent Node : 0x15ba100
+    Parent Node : 0x1a591f0
 This node has no RIGHT child
     -- Printing Node Information : --
-    Address     : 0x15ba060
-    Value       : 0x15ba0e0
-    Left Child  : 0x15ba100
-    Right Child : 0x15ba030
-    Parent Node : 0x15ba030
+    Address     : 0x1a59150
+    Value       : 17
+    Left Child  : 0x1a59240
+    Right Child : 0x1a59060
+    Parent Node : 0x1a59100
+Attempting to recurse to the left.
 Attempting to recurse to the left.
 Attempting to recurse to the left.
 This node had no LEFT child.
     -- Printing Node Information : --
-    Address     : 0x15ba2e0
-    Value       : 0x15ba310
+    Address     : 0x1a59330
+    Value       : 15
     Left Child  : 0
     Right Child : 0
-    Parent Node : 0x15ba030
+    Parent Node : 0x1a59100
 This node has no RIGHT child
     -- Printing Node Information : --
-    Address     : 0x15ba030
-    Value       : 0x15ba010
-    Left Child  : 0x15ba2e0
+    Address     : 0x1a59100
+    Value       : 12
+    Left Child  : 0x1a59330
+    Right Child : 0x1a59420
+    Parent Node : 0x1a59060
+Attempting to recurse to the left.
+This node had no LEFT child.
+    -- Printing Node Information : --
+    Address     : 0x1a59420
+    Value       : 10
+    Left Child  : 0
+    Right Child : 0
+    Parent Node : 0x1a59100
+This node has no RIGHT child
+    -- Printing Node Information : --
+    Address     : 0x1a59060
+    Value       : 7
+    Left Child  : 0x1a59100
+    Right Child : 0x1a59030
+    Parent Node : 0x1a59030
+Attempting to recurse to the left.
+Attempting to recurse to the left.
+This node had no LEFT child.
+    -- Printing Node Information : --
+    Address     : 0x1a592e0
+    Value       : 5
+    Left Child  : 0
+    Right Child : 0
+    Parent Node : 0x1a59030
+This node has no RIGHT child
+    -- Printing Node Information : --
+    Address     : 0x1a59030
+    Value       : 2
+    Left Child  : 0x1a592e0
     Right Child : 0
     Parent Node : 0
 This node has no RIGHT child
