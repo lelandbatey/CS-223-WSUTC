@@ -43,3 +43,44 @@ The tree would construct an order 4 B-Tree. After the file is read and the tree 
 > Tom
 
 
+
+
+## Questions:
+
+
+### Question 1:
+                   d
+            =============== 
+           |               |
+           b               f
+        =======         ======= 
+       |       |       |       |
+       a       c       e       h
+                              === 
+                             |   | 
+                             g  ---
+
+In this case, what is the height of the tree? is it of height 4? Or is it of
+height 3? Which one is it?
+
+
+### Question 2:
+
+Are we allowed to use a vector to store variables when reading from a file? Or
+are vectors just blanket not allowed?
+
+### Question 3:
+
+Do we need to handle whitespace in some special way? If so...
+
+### Question 4:
+
+How exactly are we supposed to handle whitespace? It was unclear on the
+previous homework whether we were supposed to disregard leading and trailing
+whitespace (I opted to maintain the integrity of the user data and did not
+strip it out). Do we strip leading and trailing whitespace? As well, what
+counts as white space? Line feed? Cairrage return? Non-breaking spaces? Em
+spaces? Zero width spaces? Do we need to handle all white space?
+
+
+
