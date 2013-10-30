@@ -114,6 +114,13 @@ std::string dubToStr(double dub) {
     return result; 
 }
 
+bool strToBool(std::string str){
+    // std::cout << "It broke right here." << std::endl;
+    // std::cout << "str size: " << str.size() << std::endl;
+    return str.size() != 0;
+    // return str.at(0) != '1';
+}
+
 
 // Returns number of lines in a file.
 int getLines(std::string fileName) {
@@ -197,6 +204,24 @@ std::string iToRoman(int i) {
 
     return std::string("");
 
+
+}
+
+long long simpleNumOfString(std::string str){
+
+    // This uses a very rudimentary algorithm to build a sorta-numerically
+    // unique representation of a string. It's not perfect, but it does a
+    // pretty good job of it.
+
+    long long finalNum = 0;
+    double tempNum = 0;
+    for (unsigned int i = 0; i < str.size(); ++i) {
+        tempNum = double (str.c_str()[i]);
+        tempNum = pow( (tempNum + pow(i,3) ),2); // (tempNum+i**3)**2
+        finalNum += long (tempNum);
+    }
+
+    return finalNum;
 
 }
 

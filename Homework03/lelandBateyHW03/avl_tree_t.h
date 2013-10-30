@@ -35,8 +35,7 @@ private:
             inNode = new node_t<T>();
             inNode->setVal(inVal);
             inNode->setParent(parentNode);
-            // inNode->getVal()->print(); // Here we print the value of the node
-        } else if (*(inNode->getVal()) > *(inVal)) {
+        } else if (*(inNode->getVal()) > *(inVal)) { // If val to insert is smaller than current node.
 
             if (DEBUG) {
                 std::cout << "\t Insert-value is smaller than current node. ";
@@ -45,34 +44,9 @@ private:
             }
 
             addNode(inVal, inNode->getLeft(), inNode);
-
             nodeBalance(inVal,inNode, _LEFT_);
 
-            // if (inNode) {
-            //     // BALANCING TREE
-            //     // If the heights are imbalanced
-
-
-            //     if (abs( height(inNode->getRight()) - height(inNode->getLeft()))==2) {
-            //         std::cout << "\t Balance is: " << getHeight(inNode) << std::endl;
-            //         prntNodeInfo(inNode);
-            //         // If the right hand side is imbalanced
-            //         if ( inNode->getRight()) {
-            //             if (inVal > inNode->getRight()->getVal()){
-            //                 // Single rotation right
-            //                 rotateRight(inNode);
-            //             } else {
-            //                 // Else, double rotation Left-Right
-            //                 rotateLR(inNode);
-            //             }
-            //         } else {
-            //             // On the off chance there *is* no right node :)
-            //             rotateLR(inNode);
-            //         }
-            //     }
-            // }
-
-        } else if (  *(inNode->getVal()) < *(inVal) ) {
+        } else if (  *(inNode->getVal()) < *(inVal) ) { // If val to insert is bigger than current node.
 
             if (DEBUG) {
                 std::cout << "\t Insert-value is larger than current node. ";
@@ -80,21 +54,22 @@ private:
                 std::cout << "\t Going to the right" << std::endl;
             }
 
-
             addNode(inVal, inNode->getRight(), inNode);
-
             nodeBalance(inVal,inNode,_RIGHT_);
-
             
 
         } else if ( *(inNode->getVal()) == *(inVal) ){
             
             if (eqFunc){
 
-                std::cout << "DANGER WILL ROBINSON THESE ARE EQUAL!!" << std::endl;
+                if (DEBUG) {
+                    std::cout << "DANGER WILL ROBINSON THESE ARE EQUAL!!" << std::endl;
+                }
                 eqFunc( inNode->getVal(), inVal ); // The variables that's needed 
                 addNode(inVal, inNode, parentNode);
             }
+
+
         } else {
             // Only happens if all the other conditions (smaller than, larger
             // than, equal to) all fail. This is only really likely to happen
@@ -113,10 +88,7 @@ private:
 
         // BALANCING TREE
         // If the heights are imbalanced
-        // if (inNode) {
         if (abs( height(inNode->getLeft()) - height(inNode->getRight()))==2) {
-            // std::cout << "\t Balance is: " << getHeight(inNode) << std::endl;
-            // prntNodeInfo(inNode);
 
             if (direction == _LEFT_) {
                 if (inNode->getLeft()) {
@@ -150,9 +122,7 @@ private:
 
 
     void prntNodeInfo(node_t<T>*& node){
-
         // Print info about this node
-        // 
 
         if (DEBUG) {
             std::cout << "\t-- Printing Node Information : --"   << std::endl;
@@ -169,18 +139,13 @@ private:
             std::cout << "\t V : " << node->getVal()->getVal()    << std::endl;
             std::cout << "\t L : " << node->getLeft()   << std::endl;
             std::cout << "\t R : " << node->getRight()  << std::endl;
-            // std::cout << "\tParent Node : " << node->getParent() << std::endl;
         }
-
-
     }
 
 
     void recursePrint(node_t<T>*& node) {
         
         if (DEBUG){
-            // std::cout << node->getLeft() << std::endl;
-            // std::cout << node->getRight() << std::endl;
             std::cout << "Attempting to recurse to the left." << std::endl;
         }
 
@@ -191,8 +156,6 @@ private:
                 std::cout << "This node had no LEFT child." << std::endl;
             }
         }
-        // node->getVal()->print();
-        // std::cout << node->getVal()->getVal() << std::endl;
         prntNodeInfo(node);
 
         if (node->getRight()) {
@@ -206,17 +169,14 @@ private:
 
 
     void (*eqFunc)(T,T); 
-    // Ok, this things pretty gnarly, I'll explain:
-    //
     // Basically, when we are trying to insert a value that's equal to a value
     // that's already in the tree, by default we *ignore* that value and it is
     // just discarded.
     //
-    // However, what if we don't want to just discard a value when we find
-    // it's already in the tree? The point of the above is to be a pointer to
-    // a function that will do some kind of mutation on the object that's
-    // trying to be inserted, then re-try to insert it. It's recursive, so
-    // even if stuff get's mutated reliably, it works 
+    // The point of the above is to be a pointer to a function that will do
+    // some kind of mutation on the object that's trying to be inserted, then
+    // re-try to insert it. It's recursive, so even if stuff get's mutated
+    // reliably, it works
     //
     // This function MUST be specified before anything starts to get inserted,
     // if you want it to mutate if it finds equality. However, if ommitted,
@@ -236,8 +196,6 @@ private:
     // Must return 1 if they ARE equal.
 
     int recursiveFind(std::string str, node_t<T>*& node){
-        // std::cout << node->getVal()->getName() << std::endl;
-
 
         if (findEqFunc(node->getVal(), str)){
             // We're going to leave the printing to the find function.
@@ -256,7 +214,6 @@ private:
         // Else:
         // Nothing found, nothing found in either sub tree.
         return 0;
-
     }
 
 
@@ -298,35 +255,6 @@ private:
         rotateLeft(node);
     }
 
-public:
-    // tree_t(arguments);
-    // ~tree_t();
-    tree_t() {
-        root = NULL;
-        eqFunc= NULL; 
-        findEqFunc = NULL;
-    }
-
-
-
-    void add(T &inVal) {
-        if (DEBUG) {
-            std::cout << "Adding a node" << std::endl;
-        }
-        node_t<T>* tmp = NULL;
-        addNode( inVal, root, tmp );
-    }
-
-
-
-    void print() {
-        if (DEBUG){
-            std::cout << " ## Printing the tree! ##" << std::endl;
-        }
-        recursePrint(root);
-    }
-
-
     // Basis for this height method from here:
     // http://stackoverflow.com/a/4219934
     int height(node_t<T>* node){
@@ -349,6 +277,31 @@ public:
         return ( height(node->getRight()) - height(node->getLeft()) );
     }
 
+public:
+
+    tree_t() {
+        root = NULL;
+        eqFunc= NULL; 
+        findEqFunc = NULL;
+    }
+
+    void add(T &inVal) {
+        if (DEBUG) {
+            std::cout << "Adding a node" << std::endl;
+        }
+        node_t<T>* tmp = NULL;
+        addNode( inVal, root, tmp );
+    }
+
+
+
+    void print() {
+        if (DEBUG){
+            std::cout << " ## Printing the tree! ##" << std::endl;
+        }
+        recursePrint(root);
+    }
+
     void setEqFunc(void (*func)(T,T)){
         eqFunc = func;
     }
@@ -357,7 +310,7 @@ public:
         if (recursiveFind(str,root)){
             return;
         } else {
-            std::cout << "That animal does not exist in this zoo." << std::endl;
+            std::cout << "That item doesn't exist in this tree/db." << std::endl;
         }
     }
 
