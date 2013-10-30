@@ -1,3 +1,6 @@
+
+// Be aware, this totally requires lfbLib.h
+
 class name_c
 {
 
@@ -43,3 +46,16 @@ public:
 
 
 };
+
+bool compareStrToName(name_c* name, std::string str) {
+    if (DEBUG) {
+        std::cout << "Name        : " << name->getVal() << std::endl;
+        std::cout << "Input String: " << str << std::endl;
+    }
+
+    if (str == name->getVal()) {
+        return 1;
+    }
+    // Implicit else!
+    return 0;
+}

@@ -76,30 +76,32 @@ int main(int argc, char const *argv[]) {
 
     tree_t<name_c*> myAVL;
     name_c* tempName;
-
-    // std::string nameList;
-
-    // std::cout << "Is this even working?: " << argv[1] << std::endl;
-
     std::vector<std::string> nameList = getNames(std::string(argv[1]));
 
-    // std::cout << "Do we get past makin the name list?" << std::endl;
-    std::cout << sizeof(nameList) << std::endl;
+    // std::cout << sizeof(nameList) << std::endl;
+
     for (unsigned int i = 0; i < nameList.size(); ++i) {
         if (strToBool(nameList[i])) {
-            // std::cout << "Not breaking in the loop" << std::endl;
-            std::cout << i << ' ';
-            std::cout << nameList[i] << std::endl;
+            
+            if (DEBUG) {
+                std::cout << i << ' ';
+                std::cout << nameList[i] << std::endl;
+            }
+
             tempName = new name_c();
             tempName->setName(nameList[i]);
-            std::cout << "-- " << tempName->getVal() << std::endl;
-            std::cout << "-- " << tempName->getNumName() << std::endl;
+            
+            if (DEBUG) {
+                std::cout << "-- " << tempName->getVal() << std::endl;
+                std::cout << "-- " << tempName->getNumName() << std::endl;
+            }
 
             myAVL.add(tempName);
 
         }
     }
 
+    std::cout << " Get tree height: " << myAVL.getTreeHeight() << std::endl;
     myAVL.print();
 
     // std::string thing;

@@ -197,8 +197,9 @@ private:
 
     int recursiveFind(std::string str, node_t<T>*& node){
 
-        if (findEqFunc(node->getVal(), str)){
-            // We're going to leave the printing to the find function.
+        if (findEqFunc(node->getVal(), str)){ // If we FIND the node we're looking for
+
+            
             return 1;
         }
         if (node->getRight()){
@@ -273,6 +274,14 @@ private:
         }
     }
 
+    int straightHeight(node_t<T>* node){ 
+        if (!node) {
+            return 0;
+        } else {
+            return std::max(straightHeight( node->getRight() ), straightHeight( node->getLeft() ) )+1;
+        }
+    }
+
     int getHeight(node_t<T>* node){
         return ( height(node->getRight()) - height(node->getLeft()) );
     }
@@ -304,6 +313,10 @@ public:
 
     void setEqFunc(void (*func)(T,T)){
         eqFunc = func;
+    }
+
+    int getTreeHeight(){
+        return straightHeight(root);
     }
 
     void find(std::string str){
