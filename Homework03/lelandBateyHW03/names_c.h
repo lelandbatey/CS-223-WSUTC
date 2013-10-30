@@ -49,13 +49,20 @@ public:
 
 bool compareStrToName(name_c* name, std::string str) {
     if (DEBUG) {
-        std::cout << "Name        : " << name->getVal() << std::endl;
-        std::cout << "Input String: " << str << std::endl;
+        std::cout << "Name        : '" << name->getVal() << " '" << std::endl;
+        // std::cout << "  " <<  name->getVal() << "  " <<  std::endl;
+        std::cout << "Input String: '" << str << "'" << std::endl;
+        std::cout << "" << std::endl;
     }
 
     if (str == name->getVal()) {
-        return 1;
+
+        if (DEBUG) {
+            std::cout << "===== TOTALLY EQUAL =====" << std::endl;
+        }
+        return true;
     }
+    // std::cout << "\t NOT EQUAL!?!" << std::endl;
     // Implicit else!
-    return 0;
+    return false;
 }

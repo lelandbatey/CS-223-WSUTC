@@ -1,7 +1,7 @@
 
 
 #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 #endif
 
 #ifndef LIGHT_DEBUG
@@ -89,7 +89,7 @@ int main(int argc, char const *argv[]) {
             }
 
             tempName = new name_c();
-            tempName->setName(nameList[i]);
+            tempName->setName( strFlog(nameList[i])); // Uppercases before making an object out of it.
             
             if (DEBUG) {
                 std::cout << "-- " << tempName->getVal() << std::endl;
@@ -101,11 +101,36 @@ int main(int argc, char const *argv[]) {
         }
     }
 
-    std::cout << " Get tree height: " << myAVL.getTreeHeight() << std::endl;
-    myAVL.print();
+    // std::cout << " Get tree height: " << myAVL.getTreeHeight() << std::endl;
+    // myAVL.print();
 
+    myAVL.setFindEqFunc(&compareStrToName);
+
+    std::string input;
+    std::string otherIn;
+    bool doneFlag = false;
     // std::string thing;
     // std::cin >> thing;
+
+    while (!doneFlag){
+        input = "";
+        
+        std::getline(std::cin, input);
+        otherIn = getAfter(input," ");
+        input = getBefore(input, " ");
+
+        input = strUpper(input);
+        otherIn = strUpper(otherIn);
+
+        if (input == "EXIT"){
+            // Currently we actually don't know what we're supposed to do when we are asked to 
+            return 0;
+        } else if ( input == "FIND") {
+            myAVL.find(otherIn);
+        } else if ( input == "HEIGHT") {
+            std::cout << myAVL.getTreeHeight() << std::endl;
+        }
+    }
 
     return 0;
 }

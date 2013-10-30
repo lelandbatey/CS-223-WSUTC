@@ -8,7 +8,7 @@ from __future__ import print_function
 # Be aware, this isn't real python, it's just pseudocode.
 
 tempLevel = 3
-maxHeight = 7
+maxHeight = 5
 
 GRID_DIM = (2**maxHeight)-1
 root_pos = GRID_DIM/2.0

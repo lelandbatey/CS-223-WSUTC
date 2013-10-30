@@ -89,6 +89,7 @@ private:
         // BALANCING TREE
         // If the heights are imbalanced
         if (abs( height(inNode->getLeft()) - height(inNode->getRight()))==2) {
+        // if (abs(getBalance(inNode))>=2) {
 
             if (direction == _LEFT_) {
                 if (inNode->getLeft()) {
@@ -182,7 +183,7 @@ private:
     // if you want it to mutate if it finds equality. However, if ommitted,
     // it'll default to ignoring equal values.
 
-    int (*findEqFunc)(T,std::string);
+    bool (*findEqFunc)(T,std::string);
     // Similar story with this.
     //
     // I will build a recursive function that will traverse the tree, trying
@@ -199,6 +200,8 @@ private:
 
         if (findEqFunc(node->getVal(), str)){ // If we FIND the node we're looking for
 
+            std::cout << node->getVal()->getVal();
+            std::cout << "," << getBalance(node) << std::endl;
             
             return 1;
         }
@@ -282,7 +285,7 @@ private:
         }
     }
 
-    int getHeight(node_t<T>* node){
+    int getBalance(node_t<T>* node){
         return ( height(node->getRight()) - height(node->getLeft()) );
     }
 
@@ -327,7 +330,7 @@ public:
         }
     }
 
-    void setFindEqFunc(int (*func)(T,std::string)){
+    void setFindEqFunc(bool (*func)(T, std::string)){
         findEqFunc = func;
     }
 

@@ -82,5 +82,9 @@ strip it out). Do we strip leading and trailing whitespace? As well, what
 counts as white space? Line feed? Cairrage return? Non-breaking spaces? Em
 spaces? Zero width spaces? Do we need to handle all white space?
 
+## Question 5:
+
+What do we print if we don't find what the person is looking for?
+
 
 
