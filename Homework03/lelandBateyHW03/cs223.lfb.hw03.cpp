@@ -16,58 +16,9 @@
 #include "readFileLines.cpp"
 #include "names_c.h"
 
-// template <class MT>
-// class tmp_c
-// {
-
-// public:
-//     // tmp_c(arguments);
-//     // ~tmp_c();
-
-//     int value;
-//     tmp_c() {
-//         value = 1;
-//     };
-
-//     tmp_c(int val){
-//         value = val;
-//     };
-    
-//     int getVal(){
-//         return value;
-//     }
-
-//     friend bool operator ==(const tmp_c &tc1, const tmp_c &tc2) {
-//         return (tc1.value == tc2.value);
-//     }
-
-//     friend bool operator < (const tmp_c &tc1, const tmp_c &tc2) {
-//         return (tc1.value < tc2.value);
-//     }
-
-//     friend bool operator > (const tmp_c &tc1, const tmp_c &tc2) {
-//         return (tc1.value > tc2.value);
-//     }
-// };
 
 
 int main(int argc, char const *argv[]) {
-    
-    // for (int i = 0; i < argc; ++i) {
-    //     std::cout << argv[i] << " " << i << std::endl;
-    // };
-
-
-    // tmp_c* tempCont;
-    // tree_t<name_c*> myAVL;
-    // // tree_t<tmp_c*> bst;
-    // for (int i = 1; i < argc; ++i) {
-    //     tempCont = new tmp_c;
-
-    //     tempCont->value = int(strToDub(std::string(argv[i])));
-    //     // std::cout << tempCont->value << std::endl;
-    //     myAVL.add(tempCont);
-    // }
 
     if (argc < 2){
         std::cout << "Dude, input a file name. Seriously... :/" << std::endl;
@@ -97,6 +48,7 @@ int main(int argc, char const *argv[]) {
             }
 
             myAVL.add(tempName);
+            // myAVL.bfp();
 
         }
     }
@@ -104,7 +56,7 @@ int main(int argc, char const *argv[]) {
     // std::cout << " Get tree height: " << myAVL.getTreeHeight() << std::endl;
     // myAVL.print();
 
-    myAVL.setFindEqFunc(&compareStrToName);
+    // myAVL.setFindEqFunc(&compareStrToName);
 
     std::string input;
     std::string otherIn;
@@ -129,6 +81,8 @@ int main(int argc, char const *argv[]) {
             myAVL.find(otherIn);
         } else if ( input == "HEIGHT") {
             std::cout << myAVL.getTreeHeight() << std::endl;
+        } else if (input == "PRINT") {
+            myAVL.bfp();
         }
     }
 

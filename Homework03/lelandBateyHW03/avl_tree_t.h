@@ -1,5 +1,6 @@
 #include "avl_node_t.h"
 #include <iostream>
+#include <queue>
 
 #ifndef _RIGHT_
 #define _RIGHT_ 0
@@ -44,7 +45,20 @@ private:
             }
 
             addNode(inVal, inNode->getLeft(), inNode);
-            nodeBalance(inVal,inNode, _LEFT_);
+            // nodeBalance(inVal,inNode, _LEFT_);
+            // nodeBalance(inVal,inNode, _RIGHT_);
+
+            if (abs(getBalance(inNode)) >= 2) {
+                if (inVal < inNode->getLeft()->getVal()){
+                    // std::cout << "single rotate left" << std::endl;
+                    // Single rotation left
+                    rotateLeft(inNode);
+                } else {
+                    // std::cout << "single rotate right-left (rotateLeftTwice)" << std::endl;
+                    // Else, double rotate Right-Left
+                    rotateRL(inNode); // rotateLeftTwice
+                }
+            }
 
         } else if (  *(inNode->getVal()) < *(inVal) ) { // If val to insert is bigger than current node.
 
@@ -55,8 +69,22 @@ private:
             }
 
             addNode(inVal, inNode->getRight(), inNode);
-            nodeBalance(inVal,inNode,_RIGHT_);
+            // nodeBalance(inVal,inNode,_RIGHT_);
+            // nodeBalance(inVal,inNode, _LEFT_);
             
+            if (abs(getBalance(inNode)) >= 2) {
+                // std::cout << "      Out of balance at "<< inNode << std::endl;
+                if (inVal > inNode->getRight()->getVal()){
+                    // Single rotation right
+                    // std::cout << "Single rotate right" << std::endl;
+                    rotateRight(inNode);
+                } else {
+                    // std::cout << "double rotate left-right (rotateRightTwice)" << std::endl;
+                    // Else, double rotation Left-Right
+                    rotateLR(inNode); // rotateRightTwice
+                }
+            }
+
 
         } else if ( *(inNode->getVal()) == *(inVal) ){
             
@@ -93,12 +121,12 @@ private:
 
             if (direction == _LEFT_) {
                 if (inNode->getLeft()) {
-                    if (inVal > inNode->getLeft()->getVal()){
+                    if (inVal < inNode->getLeft()->getVal()){
                         // Single rotation left
                         rotateLeft(inNode);
                     } else {
                         // Else, double rotate Right-Left
-                        rotateRL(inNode);
+                        rotateRL(inNode); // rotateLeftTwice
                     }
                 } else {
                     rotateRL(inNode);
@@ -110,7 +138,7 @@ private:
                         rotateRight(inNode);
                     } else {
                         // Else, double rotation Left-Right
-                        rotateLR(inNode);
+                        rotateLR(inNode); // rotateRightTwice
                     }
                 } else {
                     // On the off chance there *is* no right node :)
@@ -226,9 +254,9 @@ private:
     void rotateRight(node_t<T>*& node){
         node_t<T>* tempNode;
 
-        if (DEBUG) {
-            recursePrint(root);
-        }
+        // if (DEBUG) {
+        //     recursePrint(root);
+        // }
 
         tempNode = node->getRight();
         node->setRight(tempNode->getLeft());
@@ -239,9 +267,9 @@ private:
     void rotateLeft(node_t<T>*& node){
         node_t<T>* tempNode;
 
-        if (DEBUG) {
-            recursePrint(root);
-        }
+        // if (DEBUG) {
+        //     recursePrint(root);
+        // }
 
         tempNode = node->getLeft();
         node->setLeft(tempNode->getRight());
@@ -249,12 +277,12 @@ private:
         node = tempNode;
     }
 
-    void rotateLR(node_t<T>*& node){
+    void rotateLR(node_t<T>*& node){ // rotateRightTwice
         rotateLeft(node->getRight());
         rotateRight(node);
     }
 
-    void rotateRL(node_t<T>*& node){
+    void rotateRL(node_t<T>*& node){ // rotateLeftTwice
         rotateRight(node->getLeft());
         rotateLeft(node);
     }
@@ -332,6 +360,65 @@ public:
 
     void setFindEqFunc(bool (*func)(T, std::string)){
         findEqFunc = func;
+    }
+
+    void bfp(){
+
+        std::queue<node_t<T>*> Q;
+
+        node_t<T>* node;
+        node_t<T>* markNode;
+        markNode = root->getLeft();
+
+        int i = 0;
+        bool search = false;
+
+        // std::cout << "Root info: " << std::endl;
+        // prntNodeInfo(root);
+        Q.push(root);
+
+        while (!Q.empty()){
+            node = Q.front();
+            Q.pop();
+
+
+            if ( node == markNode || search == true) {
+                
+                if (node==markNode && search == false) {
+                    i++;                    
+                }
+
+                search = true;
+                if (node->getLeft()) {
+                    markNode = node->getLeft();
+                    // i++;
+                    search = false;
+                } else if (node->getRight()){
+                    markNode = node->getRight();
+                    // i++;
+                    search = false;
+                } else {
+                    // if (Q.front()) {
+                    //     i++;
+                    //     markNode = Q.front();
+                    // } else {
+                    //     // i++;
+                    // }
+                }
+            }
+            std::cout << "  Level: " << i << std::endl;
+            std::cout << "  " << node->getVal()->getVal();
+            std::cout << "," << getBalance(node) << std::endl;
+            prntNodeInfo(node);
+            // prntNodeInfo(markNode);
+
+            if (node->getLeft()) {
+                Q.push(node->getLeft());
+            }
+            if (node->getRight()) {
+                Q.push(node->getRight());
+            }
+        } 
     }
 
 };

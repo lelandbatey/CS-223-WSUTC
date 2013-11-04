@@ -33,15 +33,15 @@ public:
     // ~name_c();
 
     friend bool operator == (const name_c &nm1, const name_c &nm2){
-        return (nm1.numericName == nm2.numericName);
+        return (nm1.value == nm2.value);
     }
 
     friend bool operator > (const name_c &nm1, const name_c &nm2){
-        return (nm1.numericName > nm2.numericName);
+        return (nm1.value > nm2.value);
     }
 
     friend bool operator < (const name_c &nm1, const name_c &nm2){
-        return (nm1.numericName < nm2.numericName);
+        return (nm1.value < nm2.value);
     }
 
 
