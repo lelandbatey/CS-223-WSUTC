@@ -27,8 +27,8 @@ private:
 public:
 
     node_t() {
-        myLeft = NULL;
-        right = NULL;
+        myLeft = 0;
+        right = 0;
         // value = NULL;
     };
     // ~node_t();
@@ -57,11 +57,15 @@ public:
 
     void setLeft(node_t* node) {
         // myLeft = NULL;
+        std::cout << "setting left" << std::endl;
         myLeft = node;
+        std::cout << "left set" << std::endl;
     };
     
-    void setRight(node_t*& node) {
+    void setRight(node_t* node) {
+        std::cout << "setting right" << std::endl;
         right = node;
+        std::cout << "right set" << std::endl;
     };
 
     void setParent(node_t*& node) {

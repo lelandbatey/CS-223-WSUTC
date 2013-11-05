@@ -1,4 +1,4 @@
-#include "../avl_node_t.h"
+#include "alt_avl_node.h"
 #include <iostream>
 #include <queue>
 
@@ -17,15 +17,16 @@
 class tree_c
 {
 private:
-    node_t<std::string>* root;
 
-    void addNode(node_t<std::string>*& node, std::string inStr ){
+
+    void addNode(node_t*& node, std::string inStr ){
         // std::cout << inStr << std::endl;
         // std::cout << node << std::endl;
         // prntNodeInfo(node, true);
         if(node == NULL) {  // (1) If we are at the end of the tree place the value
-            node = new node_t<std::string>;
+            node = new node_t();
             node->setVal(inStr);
+            // prntNodeInfo(node, true);
              
         } else if(inStr < node->getVal()){  //(2) otherwise go left if smaller
             addNode(node->getLeft(), inStr);    
@@ -55,7 +56,7 @@ private:
 
     // Largely taken from here:
     // http://stackoverflow.com/a/4219934
-    int height(node_t<std::string>*& node){
+    int height(node_t*& node){
         int left, right;
 
         if(node==NULL)
@@ -69,8 +70,8 @@ private:
             return right+1;
     }
 
-    // void rotateLeftOnce(node_t<std::string>*& node){
-    //      node_t<std::string> *otherNode;
+    // void rotateLeftOnce(node_t*& node){
+    //      node_t *otherNode;
 
     //      otherNode = node->getLeft();
     //      node->setLeft(otherNode->getRight());
@@ -79,14 +80,14 @@ private:
     // }
 
 
-    // void rotateLeftTwice(node_t<std::string>*& node){
+    // void rotateLeftTwice(node_t*& node){
     //      rotateRightOnce(node->getLeft());
     //      rotateLeftOnce(node);
     // }
 
 
-    // void rotateRightOnce(node_t<std::string>*& node){
-    //      node_t<std::string> *otherNode;
+    // void rotateRightOnce(node_t*& node){
+    //      node_t *otherNode;
 
     //      otherNode = node->getRight();
     //      node->setRight(otherNode->getLeft());
@@ -95,22 +96,24 @@ private:
     // }
 
 
-    // void rotateRightTwice(node_t<std::string>*& node){
+    // void rotateRightTwice(node_t*& node){
     //      rotateLeftOnce(node->getRight());
     //      rotateRightOnce(node);
     // }
 
+public:
+    node_t* root;
 
-    void rotateWithLeftChild( node_t<std::string>*& k2){
+    void rotateWithLeftChild( node_t*& k2){
         // std::cout << "Rote with LEFT child" << std::endl;
-        node_t<std::string>* k1 = k2->getLeft();
+        node_t* k1 = k2->getLeft();
         k2->setLeft(k1->getRight());
         k1->setRight(k2);
         k2 = k1;
     }
 
-    void rotateWithRightChild( node_t<std::string>*& k2){
-        node_t<std::string>* k1 = k2->getRight();
+    void rotateWithRightChild( node_t*& k2){
+        node_t* k1 = k2->getRight();
         // k1->setRight(k2->getLeft());
         // k2->setRight(k1);
         k2->setRight(k1->getLeft());
@@ -118,21 +121,21 @@ private:
         k2 = k1;
     }
 
-    void doubleWithRightChild( node_t<std::string>*& k2){
-        rotateWithRightChild(k2->getRight());
-        rotateWithLeftChild(k2);
+    void doubleWithRightChild( node_t*& k2){
+        rotateWithLeftChild(k2->getRight());
+        rotateWithRightChild(k2);
     }
 
-    void doubleWithLeftChild(node_t<std::string>*& k2){
+    void doubleWithLeftChild(node_t*& k2){
         rotateWithRightChild(k2->getLeft());
         rotateWithLeftChild(k2);
     }
 
-    int getBalance(node_t<std::string>* node){
+    int getBalance(node_t* node){
         return ( height(node->getRight()) - height(node->getLeft()) );
     }
 
-    void prntNodeInfo(node_t<std::string>*& node, bool override){
+    void prntNodeInfo(node_t*& node, bool override){
         // Print info about this node
 
         if (LIGHT_DEBUG || override) {
@@ -144,7 +147,6 @@ private:
         }
     }
 
-public:
 
     tree_c() {
         root = NULL;
@@ -156,10 +158,10 @@ public:
 
     void bfp(){
 
-        std::queue<node_t<std::string>*> Q;
+        std::queue<node_t*> Q;
 
-        node_t<std::string>* node;
-        node_t<std::string>* markNode;
+        node_t* node;
+        node_t* markNode;
         markNode = root->getLeft();
 
         int i = 0;
