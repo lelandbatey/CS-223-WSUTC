@@ -29,7 +29,7 @@ public:
     node_t() {
         left = NULL;
         right = NULL;
-        value = 0;
+        // value = NULL;
     };
     // ~node_t();
 

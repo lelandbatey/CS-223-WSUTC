@@ -10,28 +10,29 @@
 #include <string>
 #include <vector>
 #include "../lfbLib.h"
-#include "../avl_tree_t.h"
+#include "alt_avl_tree.h"
 #include "../readFileLines.cpp"
-#include "../names_c.h"
+// #include "../names_c.h"
 
 
 int main(int argc, char const *argv[])
 {
-    tree_t<name_c*> myAVL;
-    name_c* tempName;
+    tree_c myAVL;
+    // name_c* tempName;
     std::vector<std::string> nameList = getNames(std::string(argv[1]));
 
     for (unsigned int i = 0; i < nameList.size(); ++i) {
         if (strToBool(nameList[i])) {
-           
-            tempName = new name_c();
-            tempName->setName( strFlog(nameList[i])); // Uppercases before making an object out of it.
-            
-            myAVL.add(tempName);
+            std::cout << i << std::endl;
+            // tempName = new name_c();
+            // tempName->setName( strFlog(nameList[i])); // Uppercases before making an object out of it.
+            // std::cout << strFlog(nameList[i]) << std::endl;
+            myAVL.add(strFlog(nameList[i]));
         }
     }
 
     myAVL.bfp();
+
 
     return 0;
 }
