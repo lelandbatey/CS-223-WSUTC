@@ -20,14 +20,14 @@ class node_t
 private:
 
     T value;
-    node_t* left;
+    node_t* myLeft;
     node_t* right;
     node_t* parent;
 
 public:
 
     node_t() {
-        left = NULL;
+        myLeft = NULL;
         right = NULL;
         // value = NULL;
     };
@@ -48,7 +48,7 @@ public:
 
     // Declares getLeft method returning reference to pointer of type "node_t"
     node_t*& getLeft() {
-        return left;
+        return myLeft;
     }; 
     
     node_t*& getParent() {
@@ -56,14 +56,15 @@ public:
     }; 
 
     void setLeft(node_t* node) {
-        left = node;
+        // myLeft = NULL;
+        myLeft = node;
     };
     
-    void setRight(node_t* node) {
+    void setRight(node_t*& node) {
         right = node;
     };
 
-    void setParent(node_t* node) {
+    void setParent(node_t*& node) {
         parent = node;
     }
     // void print();

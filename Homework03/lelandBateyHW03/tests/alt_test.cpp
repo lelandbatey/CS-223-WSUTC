@@ -17,10 +17,12 @@
 void rotWithRightChild(){
     tree_c myAVL;
 
+    // myAVL.add(std::string("0"));
     myAVL.add(std::string("1"));
     myAVL.add(std::string("2"));
     myAVL.add(std::string("3"));
 
+    std::cout << "==rotWithRightChild==" << std::endl;
     myAVL.bfp();
 }
 
@@ -30,7 +32,7 @@ void rotWithLeftChild(){
     myAVL.add(std::string("3"));
     myAVL.add(std::string("2"));
     myAVL.add(std::string("1"));
-
+    std::cout << "--rotWithLeftChild--" << std::endl;
     myAVL.bfp();
 }
 
@@ -40,7 +42,7 @@ void doubleWithRightChild(){
     myAVL.add(std::string("2"));
     myAVL.add(std::string("3"));
     myAVL.add(std::string("1"));
-
+    std::cout << "--doubleWithRightChild--" << std::endl;
     myAVL.bfp();
 }
 
@@ -50,7 +52,7 @@ void doubleWithLeftChild(){
     myAVL.add(std::string("3"));
     myAVL.add(std::string("1"));
     myAVL.add(std::string("2"));
-
+    std::cout << "--doubleWithLeftChild--" << std::endl;
     myAVL.bfp();
 }
 

@@ -1,9 +1,9 @@
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 
 #ifndef LIGHT_DEBUG
-#define LIGHT_DEBUG 0
+#define LIGHT_DEBUG 1
 #endif
 
 #include <iostream>

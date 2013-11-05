@@ -16,8 +16,8 @@
 
 class tree_c
 {
-    private:
-        node_t<std::string>* root;
+private:
+    node_t<std::string>* root;
 
     void addNode(node_t<std::string>*& node, std::string inStr ){
         // std::cout << inStr << std::endl;
@@ -46,7 +46,7 @@ class tree_c
                     rotateWithRightChild(node);
                 else
                     // rotateRightTwice(node);
-                    rotateWithLeftChild(node);
+                    doubleWithRightChild(node); // RL insert, RL rotate
             }
         }
         // return node;
@@ -101,30 +101,31 @@ class tree_c
     // }
 
 
-    void rotateWithLeftChild( node_t<std::string>*& node){
-        node_t<std::string>* k2 = node->getLeft();
-
-        k2->setLeft(node->getRight());
-        node->setRight(k2);
-        node = k2;
+    void rotateWithLeftChild( node_t<std::string>*& k2){
+        // std::cout << "Rote with LEFT child" << std::endl;
+        node_t<std::string>* k1 = k2->getLeft();
+        k2->setLeft(k1->getRight());
+        k1->setRight(k2);
+        k2 = k1;
     }
 
-    void rotateWithRightChild( node_t<std::string>*& node){
-        node_t<std::string>* k2 = node->getRight();
-
-        node->setRight(k2->getLeft());
-        k2->setLeft(node);
-        node = k2;
+    void rotateWithRightChild( node_t<std::string>*& k2){
+        node_t<std::string>* k1 = k2->getRight();
+        // k1->setRight(k2->getLeft());
+        // k2->setRight(k1);
+        k2->setRight(k1->getLeft());
+        k1->setLeft(k2);
+        k2 = k1;
     }
 
-    void doubleWithRightChild( node_t<std::string>*& node){
-        rotateWithRightChild(node->getRight());
-        rotateWithLeftChild(node);
+    void doubleWithRightChild( node_t<std::string>*& k2){
+        rotateWithRightChild(k2->getRight());
+        rotateWithLeftChild(k2);
     }
 
-    void doubleWithLeftChild(node_t<std::string>*& node){
-        rotateWithRightChild(node->getLeft());
-        rotateWithLeftChild(node);
+    void doubleWithLeftChild(node_t<std::string>*& k2){
+        rotateWithRightChild(k2->getLeft());
+        rotateWithLeftChild(k2);
     }
 
     int getBalance(node_t<std::string>* node){
@@ -200,7 +201,7 @@ public:
             std::cout << "  Level: " << i << std::endl;
             std::cout << "  " << node->getVal();
             std::cout << "," << getBalance(node) << std::endl;
-            // prntNodeInfo(node, true);
+            prntNodeInfo(node, true);
             // prntNodeInfo(markNode);
 
             if (node->getLeft()) {
