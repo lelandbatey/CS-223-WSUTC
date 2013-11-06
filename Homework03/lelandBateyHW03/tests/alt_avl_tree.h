@@ -70,36 +70,30 @@ private:
             return right+1;
     }
 
-    // void rotateLeftOnce(node_t*& node){
-    //      node_t *otherNode;
 
-    //      otherNode = node->getLeft();
-    //      node->setLeft(otherNode->getRight());
-    //      otherNode->setRight(node);
-    //      node = otherNode;
-    // }
+    int recursiveFind(std::string str, node_t*& node){
 
+        if (findEqFunc(node->getVal(), str)){ // If we FIND the node we're looking for
 
-    // void rotateLeftTwice(node_t*& node){
-    //      rotateRightOnce(node->getLeft());
-    //      rotateLeftOnce(node);
-    // }
-
-
-    // void rotateRightOnce(node_t*& node){
-    //      node_t *otherNode;
-
-    //      otherNode = node->getRight();
-    //      node->setRight(otherNode->getLeft());
-    //      otherNode->setLeft(node);
-    //      node = otherNode;
-    // }
-
-
-    // void rotateRightTwice(node_t*& node){
-    //      rotateLeftOnce(node->getRight());
-    //      rotateRightOnce(node);
-    // }
+            std::cout << node->getVal()->getVal();
+            std::cout << "," << getBalance(node) << std::endl;
+            
+            return 1;
+        }
+        if (node->getRight()){
+            if (recursiveFind(str, node->getRight())){
+                return 1;
+            }
+        }
+        if (node->getLeft()){
+            if (recursiveFind(str, node->getLeft())){
+                return 1;
+            }
+        }
+        // Else:
+        // Nothing found, nothing found in either sub tree.
+        return 0;
+    }
 
 public:
     node_t* root;
@@ -154,6 +148,14 @@ public:
 
     void add(std::string inStr ){
         addNode(root, inStr);
+    }
+
+    void find(std::string str){
+        if (recursiveFind(str,root)){
+            return;
+        } else {
+            std::cout << "That item doesn't exist in this tree/db." << std::endl;
+        }
     }
 
     void bfp(){

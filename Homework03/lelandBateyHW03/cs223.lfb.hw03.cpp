@@ -12,7 +12,8 @@
 #include <string>
 #include <vector>
 #include "lfbLib.h"
-#include "avl_tree_t.h"
+// #include "avl_tree_t.h"
+#include "alt_avl_tree.h"
 #include "readFileLines.cpp"
 #include "names_c.h"
 
@@ -25,7 +26,8 @@ int main(int argc, char const *argv[]) {
         return 0;
     }
 
-    tree_t<name_c*> myAVL;
+    // tree_t<name_c*> myAVL;
+    tree_c myAVL;
     name_c* tempName;
     std::vector<std::string> nameList = getNames(std::string(argv[1]));
 
@@ -39,15 +41,15 @@ int main(int argc, char const *argv[]) {
                 std::cout << nameList[i] << std::endl;
             }
 
-            tempName = new name_c();
-            tempName->setName( strFlog(nameList[i])); // Uppercases before making an object out of it.
+            // tempName = new name_c();
+            // tempName->setName( strFlog(nameList[i])); // Uppercases before making an object out of it.
             
             if (DEBUG) {
                 std::cout << "-- " << tempName->getVal() << std::endl;
                 std::cout << "-- " << tempName->getNumName() << std::endl;
             }
 
-            myAVL.add(tempName);
+            myAVL.add(strFlog(nameList[i]));
             // myAVL.bfp();
 
         }
