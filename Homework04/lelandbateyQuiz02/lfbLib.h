@@ -15,6 +15,10 @@
 #include <string>
 #include <math.h>
 
+// A non-standard but very well supported way to make sure that something only
+// gets included once.
+#pragma once
+
 // Debug. Very important, since tons of stuff is set to print if this is set
 // to "1". Don't touch unless you want to get TMI'd by this thing.
 #ifndef DEBUG
@@ -168,6 +172,23 @@ static inline std::string &trim(std::string &s) {
 // std::string trim(std::string &s) {
 
         return ltrim(rtrim(s));
+}
+
+
+// Two functions for splitting a string. The first uses a pre-constructed
+// vector, the second returns a new vector.
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    split(s, delim, elems);
+    return elems;
 }
 
 // Used to convert strings to uppercase.

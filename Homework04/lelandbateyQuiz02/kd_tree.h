@@ -47,6 +47,9 @@ public:
     kd_tree(){
         root = 0;
     };
+
+    void buildTree()
+
     // ~kd_tree();
 
     

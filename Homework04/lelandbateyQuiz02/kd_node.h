@@ -4,7 +4,8 @@
 class kd_node
 {
 private:
-
+    
+    
 public:
     kd_node* left;
     kd_node* right;
