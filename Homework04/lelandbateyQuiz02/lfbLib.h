@@ -103,6 +103,17 @@ double strToDub(std::string str){
     return result;
 }
 
+// Converts std::string to double
+int strToInt(std::string str){
+    int result;
+    std::stringstream convert(str);
+
+    if (!(convert >> result))
+        result = 0;
+
+    return result;
+}
+
 // Converts double to std::string
 std::string dubToStr(double dub) {
     // const int i = 3;

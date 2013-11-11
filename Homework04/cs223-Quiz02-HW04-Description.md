@@ -13,7 +13,7 @@ so. **You may not use a map** or data structure from the standard template
 library.
 
 The program should also read a file containing lists of 2-D points of mass and NET, called the *observed list*. Each item in this file will also have a number called the ID (for index).  
-For each item in the observed list, perform a nearest neighbor search returning the closest peptide sequence and elution time. Your program should print **(in CSV format)** to standard output the list of all found peptides. Your distance function should be a Euclidean distance based on mass and NET.
+For each item in the observed list, perform a nearest neighbor search of the k-d tree, returning the closest peptide sequence and elution time. Your program should print **(in CSV format)** to standard output the list of all found peptides. Your distance function should be a Euclidean distance based on mass and NET.
 
 Example data files are given on the Angel site.  
 Your program will be run as following:

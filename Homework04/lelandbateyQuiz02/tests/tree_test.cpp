@@ -6,10 +6,9 @@
 #ifndef DEBUG
 #define DEBUG 1
 #endif
-
-#include "buildPointsFromFile.cpp"
-#include "kd_tree.h"
-#include "kd_point.h"
+#include "../buildPointsFromFile.cpp"
+#include "../kd_tree.h"
+#include "../kd_point.h"
 
 
 int countPnts(kd_point** pList, int initSize){
@@ -24,7 +23,7 @@ int countPnts(kd_point** pList, int initSize){
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 3) {
+    if (argc < 2) {
         std::cout << "Not enough arguments." << std::endl;
         return 1;
     } else {
@@ -47,10 +46,9 @@ int main(int argc, char const *argv[])
     mTree.build(pntList, *plSize);
 
 
-
+    mTree.bfp();
 
 
 
     return 0;
 }
-

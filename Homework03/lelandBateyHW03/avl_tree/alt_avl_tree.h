@@ -205,13 +205,6 @@ public:
                     markNode = node->getRight();
                     // i++;
                     search = false;
-                } else {
-                    // if (Q.front()) {
-                    //     i++;
-                    //     markNode = Q.front();
-                    // } else {
-                    //     // i++;
-                    // }
                 }
             }
             // std::cout << "  Level: " << i << std::endl;
