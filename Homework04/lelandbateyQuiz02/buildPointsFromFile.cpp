@@ -61,12 +61,10 @@ kd_point** getPointList(std::string fileName, int* plSize){
             pntList[i] = new kd_point( brokeLine[0], strToDub(brokeLine[1]));
             (*plSize)++;
         } else {
-            std::cout << "found odd line: " << strVect[i] << std::endl;
-            std::cout << "  Line #: " << i << std::endl;
+            // std::cout << "found odd line: " << strVect[i] << std::endl;
+            // std::cout << "  Line #: " << i << std::endl;
         }
     }
-
-    std::cout << "Done messing with list" << std::endl;
 
     return pntList;
 

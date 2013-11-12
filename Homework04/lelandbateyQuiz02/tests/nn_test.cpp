@@ -21,7 +21,7 @@ kd_point* linSearch(kd_point** pntList, kd_point* search_point, int* plSize){
         }
     }
 
-    std::cout << "Nearest: " << std::endl;
+    std::cout << "Nearest (linear search): " << std::endl;
     std::cout << "  " << nearest->getMass() << "," << nearest->getNET() << std::endl;
 
     return nearest;
@@ -42,10 +42,20 @@ int main(int argc, char const *argv[])
     search_point->setObservedNET(0.149476528);
     search_point->setID(0);
 
+    // 1,0.148264542,609.2944385
+
+    kd_point* sp = new kd_point();
+    sp->setObservedMass(609.2944385);
+    sp->setObservedNET(0.148264542);
+    sp->setID(1);
+
+
     mTree.search(search_point);
+    mTree.search(sp);
+
 
     linSearch(pntList, search_point, plSize);
-
+    linSearch(pntList, sp, plSize);
 
     return 0;
 }

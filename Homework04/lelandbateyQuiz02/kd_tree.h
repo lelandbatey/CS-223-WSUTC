@@ -25,12 +25,7 @@ private:
     bool (*oCompCheck[2])(kd_point*,kd_point*);
     double (*sphereCheck[2])(kd_point*,kd_point*);
 
-    void prntPnt(kd_point* pnt){
-        // std::cout << "Point Addr: " << pnt << std::endl;
-        // std::cout << "   Mass : " << pnt->mass << std::endl;
-        // std::cout << "   NET  : " << pnt->NET  << std::endl;
-        std::cout << pnt->peptide << "," << pnt->mass << "," << pnt->NET << std::endl;
-    }
+    
 
     // Recursive building of our kd-tree.
     void buildTree(int begin, int end, int k, int i, kd_point** pList, kd_node*& node ){
@@ -42,7 +37,7 @@ private:
         // std::cout << "Mid  : " << mid << std::endl;
         // std::cout << "Pos  : " << mid+begin << std::endl;
 
-        std::cout << "A: " << node << std::endl;
+        // std::cout << "A: " << node << std::endl;
 
         i = (i+1) % k;
 
@@ -56,14 +51,14 @@ private:
             // std::cout << "  Only one item" << std::endl;
             // std::cout << "Assign start" << std::endl;
             node = new kd_node(pList[begin],i);
-            prntPnt(pList[begin]);
+            // prntPnt(pList[begin]);
         } else if (end-begin > 1) {
             
             // std::cout << "Assign mid" << std::endl;
             node = new kd_node(pList[begin+mid],i);
-            std::cout << "A: " << node << std::endl;
+            // std::cout << "A: " << node << std::endl;
 
-            prntPnt(pList[begin+mid]);
+            // prntPnt(pList[begin+mid]);
             
             buildTree(begin, begin+mid, k, i, pList, node->getLeft());
             buildTree(begin+mid+1, end, k, i, pList, node->getRight());
@@ -75,119 +70,33 @@ private:
         }
     }
 
-    void nnSearch(kd_node* node, kd_point* sPoint){
-        kd_point* nn;
-        bool done = false;
-        int k = _BEGIN_DIM_;
-
-        std::stack<kd_node*> nStack = loopTreeSearch(node, sPoint);
-
-
-        std::cout << "Top: " << nStack.top() << std::endl;
-        std::cout << "TopVal: " << nStack.top()->getVal() << std::endl;
-        nn = nStack.top()->getVal();
-        nStack.pop();
-
-        std::cout << "Node: " << node << std::endl;
-        
-
-        double bestDist = 0;
-        bestDist = oCalcDistance(sPoint, nn);
-
-
-
-        done = false;
-        while (!done){
-            if (!nStack.empty()){
-                node = nStack.top();
-                nStack.pop();
-            } else {
-                std::cout << "Stack is empty!" << std::endl;
-                done = true;
-                continue;
-            }
-
-            // See if it lies inside our hypersphere radius
-
-            if (isInsideHyperSphere( bestDist, nn, node->getVal() )){
-                std::cout << "This node is in the hypersphere:" << std::endl;
-                prntPnt(node->getVal());
-
-                std::stack<kd_node*> checkStack;
-                kd_point* potentialNeighbor;
-                kd_node* checkNode = node;
-
-                if (oCompCheck[checkNode->getK()](sPoint, checkNode->getVal())){
-                    checkStack = loopTreeSearch(checkNode->getRight(), sPoint); // Here we got right instead of left
-                } else {
-                    checkStack = loopTreeSearch(checkNode->getLeft(), sPoint); // Here we go left isntead of right
-                }
-                potentialNeighbor = checkStack.top()->getVal();
-
-                if (bestDist > oCalcDistance(sPoint, potentialNeighbor)){
-                    bestDist = oCalcDistance(sPoint, potentialNeighbor);
-                    nn = potentialNeighbor;
-                    std::cout << "Found a new nearest neighbor!" << std::endl;
-                }
-            }
-        }
-        std::cout << std::setprecision(5) << bestDist << std::endl;
-        std::cout << "Nearest neighbor:" << std::endl;
-        prntPnt(nn);
-        std::cout << "sPoint: " << std::endl;
-        std::cout << sPoint->getObservedMass() << "," << sPoint->getObservedNET() << std::endl;
-    }
-
-    std::stack<kd_node*> loopTreeSearch(kd_node*& node, kd_point*& sPoint){
-        // kd_point* nn;
-        bool done = false;
-        int k = _BEGIN_DIM_;
-
-        std::stack<kd_node*> nStack;
-
-        while (!done){
-            k = (k+1) % _DIMS_;
-            if (node == NULL){
-                done = true;
-                continue;
-            }
-            if (node){
-                if (oCompCheck[k](sPoint,node->getVal())){ // Then the search_node is smaller than the current node.
-                    nStack.push(node);
-                    node = node->getLeft();
-                } else if (!oCompCheck[k](sPoint,node->getVal())){ // search_node is larger than the current node.
-                    nStack.push(node);
-                    node = node->getRight();
-                }
-            }
-        }
-        return nStack;
-    }
-
     void recSearch(kd_node*& node, kd_point*& sPoint, kd_point*& nn, int k){
         k = (k+1) % _DIMS_;
 
         // bool foundLeaf = false
 
-
-        if (oCompCheck[k](sPoint, node->getVal())){ // sPoint smaller, go left
-            if (node->getLeft()){
-                recSearch(node->getLeft(), sPoint, nn, k);
-            } else {
-                if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
-                    nn = node->getVal();
+        if (node){
+            if (oCompCheck[k](sPoint, node->getVal())){ // sPoint smaller, go left
+                if (node->getLeft()){
+                    recSearch(node->getLeft(), sPoint, nn, k);
+                } else {
+                    if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+                        nn = node->getVal();
+                    }
+                    return;
                 }
-                return;
-            }
-        } else { // sPoint larger, go right.
-            if (node->getRight()){
-                recSearch(node->getRight(), sPoint, nn, k);
-            } else {
-                if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
-                    nn = node->getVal();
+            } else { // sPoint larger, go right.
+                if (node->getRight()){
+                    recSearch(node->getRight(), sPoint, nn, k);
+                } else {
+                    if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+                        nn = node->getVal();
+                    }
+                    return;
                 }
-                return;
             }
+        } else {
+            return;
         }
 
         // If the cartesian distance is less, then current node the new nearest neighbor
@@ -197,15 +106,12 @@ private:
 
         // If there's any possibility that there could be nodes in another
         // fork of the subtree, then we explore that as well.
-        if (sphereCheck[k](sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
-            if ( oCalcDistance(sPoint, node->getVal()) ){// spoint smaller, but we check the other direction (right)
-                if (node->getLeft()){
-                    recSearch(node->getRight(), sPoint, nn, k);
-                }
+        if (sphereCheck[k](sPoint, node->getVal()) <= oCalcDistance(sPoint, nn)){
+        // if (isInsideHyperSphere(oCalcDistance(sPoint, nn), nn, node->getVal())) {
+            if ( oCompCheck[k](sPoint, node->getVal()) ){// spoint smaller, but we check the other direction (right)
+                recSearch(node->getRight(), sPoint, nn, k);
             } else {
-                if (node->getRight()){
-                    recSearch(node->getLeft(), sPoint, nn, k);
-                }
+                recSearch(node->getLeft(), sPoint, nn, k);
             }
         }
 
@@ -214,6 +120,20 @@ private:
         return;
     }
 public:
+
+    void formatOutput(kd_point* oPnt, kd_point* pnt){
+        std::cout << oPnt->getID() << ", " << pnt->getPep() << ", " <<
+        pnt->getNET() << ", " << pnt->getMass() << ", " << oPnt->getObservedNET()
+        << ", " << oPnt->getObservedMass() << std::endl;
+    }
+
+    void prntPnt(kd_point* pnt){
+        // std::cout << "Point Addr: " << pnt << std::endl;
+        // std::cout << "   Mass : " << pnt->mass << std::endl;
+        // std::cout << "   NET  : " << pnt->NET  << std::endl;
+        std::cout << pnt->peptide << "," << pnt->mass << "," << pnt->NET << std::endl;
+    }
+
     kd_tree(){
         root = 0;
         // Initialize our array of comparison functions.
@@ -238,8 +158,8 @@ public:
         // nnSearch(root, sPoint);
         kd_point* nn = root->getVal();
         recSearch(root, sPoint, nn, _BEGIN_DIM_);
-        std::cout << "Nearest neighbor:" << std::endl;
-        prntPnt(nn);
+        // std::cout << "Nearest neighbor:" << std::endl;
+        formatOutput(sPoint, nn);
     }
 
     void bfp(){
