@@ -13,10 +13,6 @@ class kd_point
 private:
     double peptideToMass(std::string str){
         double toReturn = 0;
-
-        // char ch_ary[20] = {'A','R','N','D','C','E','Q','G','H','I','L','K','M','F','P','S','T','W','Y','V'};
-        // double d_ary[20]  = { 71.03711,156.10111,114.04293,115.02694,103.00919,129.04259,128.05858,57.02146,137.05891,113.08406,113.08406,128.09496,131.04049,147.06841,97.05276,87.03203,101.04768,186.07931,163.06333,99.06841 };
-
         lfbMap pepMap;
 
         for (unsigned int i = 0; i < str.size(); ++i){
@@ -24,14 +20,8 @@ private:
             // have done it a much better way, but it's not the worst thing I
             // could have done, and it is easy.
 
-            // for (int n = 0; n < 20; ++n){
-            //     if (str.c_str()[i] ==  ) {
-            //         toReturn = toReturn + d_ary[n];
-            //     }
-            // }
             toReturn = toReturn + pepMap.find(str.c_str()[i]);
         }
-
         return toReturn;
     }
 
@@ -71,7 +61,6 @@ public:
         id = 0;
     }
 
-
     // Just our boilerplate getters and setters.
     double getNET(){
         return NET;
@@ -104,10 +93,6 @@ public:
         return peptide;
     }
 
-
-
-
-    // ~kd_point();
 };
 
 bool oCompMass(kd_point* pnt1, kd_point* pnt2){
@@ -120,7 +105,6 @@ bool oCompNET(kd_point* pnt1, kd_point* pnt2){
 }
 
 bool compMass(kd_point* pnt1, kd_point* pnt2 ){
-    // std::cout << "compMass successfully called!" << std::endl;
     return pnt1->getMass() < pnt2->getMass();
 }
 
@@ -137,14 +121,10 @@ double distNET(kd_point* oPnt, kd_point* knownPoint){
 }
 
 double oCalcDistance(kd_point* oPnt, kd_point* knownPoint){
-
-    // std::cout << "Calculating the distance!" << std::endl;
-    // std::cout << "Square of massDist: " << std::setprecision(50) << pow(abs(knownPoint->getMass() - oPnt->getObservedMass()), 2.0) << std::endl;
     
     double dist = 0;
     // Whoooo pythagorean theorum!
     dist = sqrt( pow(std::abs(knownPoint->getMass() - oPnt->getObservedMass()), 2.0)+pow(std::abs(knownPoint->getNET() - oPnt->getObservedNET()), 2.0) );
-    // std::cout << "Distance: " << dist << std::endl;
     return dist;
 
 }

@@ -53,8 +53,5 @@ public:
     void setLeft(kd_node*& node){
         left = node;
     }
-
-    // ~kd_node();
-
     
 };

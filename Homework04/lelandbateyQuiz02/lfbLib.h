@@ -43,12 +43,6 @@ std::string getAfter(std::string input, std::string delimiter) {
 
     i = input.find_first_of(delimiter);
 
-    // if (DEBUG){
-    //     std::cout << " i is        : " << i << std::endl;
-    //     std::cout << " delimiter is: '" << delimiter << "'" << std::endl;
-    //     std::cout << " input is    : '" << input << "'" << std::endl;
-    // }
-
     if (i == std::string::npos) {
         return input;
     } else {
@@ -61,12 +55,6 @@ std::string getAfter(std::string input, std::string delimiter) {
 std::string getBefore(std::string input, std::string delimiter) {
     unsigned long long i;
     i = input.find_first_of(delimiter);
-
-    // if (DEBUG){
-    //     std::cout << " i is        : " << i << std::endl;
-    //     std::cout << " delimiter is: '" << delimiter << "'" << std::endl;
-    //     std::cout << " input is    : '" << input << "'" << std::endl;
-    // }
 
     if (i == std::string::npos) {
         return input;
@@ -116,24 +104,16 @@ int strToInt(std::string str){
 
 // Converts double to std::string
 std::string dubToStr(double dub) {
-    // const int i = 3;
-    // std::ostringstream s;
-    // s << i;
-    // const std::string i_as_string(s.str());
     std::ostringstream temp;
 
     temp << dub;
     
     std::string result(temp.str());
-    // std::cout << result << std::endl;
     return result; 
 }
 
 bool strToBool(std::string str){
-    // std::cout << "It broke right here." << std::endl;
-    // std::cout << "str size: " << str.size() << std::endl;
     return str.size() != 0;
-    // return str.at(0) != '1';
 }
 
 
@@ -165,7 +145,6 @@ std::string whiteStrip(std::string str) {
 
 
 // Originally taken from here: http://stackoverflow.com/a/217605
-
 // trim from start
 static inline std::string &ltrim(std::string &s) {
         s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
@@ -180,8 +159,6 @@ static inline std::string &rtrim(std::string &s) {
 
 // trim from both ends
 static inline std::string &trim(std::string &s) {
-// std::string trim(std::string &s) {
-
         return ltrim(rtrim(s));
 }
 
@@ -261,59 +238,6 @@ std::string iToRoman(int i) {
 
 }
 
-long long simpleNumOfString(std::string str){
-
-    // This uses a very rudimentary algorithm to build a sorta-numerically
-    // unique representation of a string. It's not perfect, but it does a
-    // pretty good job of it.
-
-    long long finalNum = 0;
-    double tempNum = 0;
-    for (unsigned int i = 0; i < str.size(); ++i) {
-        tempNum = double (str.c_str()[i]);
-        tempNum = pow( (tempNum + pow(i,3) ),2); // (tempNum+i**3)**2
-        finalNum += long (tempNum);
-    }
-
-    return finalNum;
-
-}
-
-
-// Returns a *relatively* unique representation of a given string
-//
-// Basically, for each character in a std::string, it takes the ascii number
-// for that char, subtracts 31 from it to make it a little smaller, then
-// squares that number. This large value is then added to all the sum of all
-// the previous process for each char. Once all that's been done, it
-// multiplies the total by the length of the string.
-//
-// It won't make numbers to large to fit in an int (at least for relatively
-// small strings), but they'll be at least *close* to unique.
-// int deriveNumericName(std::string name) {
-//     std::cout << "WHAT IS HAPPENING?" << std::endl;
-//     int numericName = 0;
-//     int temp = 0;
-    
-
-//     for (unsigned int i = 0; i < name.length(); ++i) {
-//         iTemp = name[i];
-//         oTemp << dubToStr(strToDub(iTemp));
-
-//         temp = int(name.c_str()[i]) - 41;
-
-//         temp = pow(temp,3); // Square temp
-
-//         numericName = numericName + temp;
-//     }
-
-//     numericName = numericName * name.length();
-
-//     std::cout << oTemp.str() << std::endl;
-
-//     return numericName;
-
-// }
 
 
 

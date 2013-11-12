@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <queue>
 #include <stack>
-#include <unistd.h>
 #ifndef _BEGIN_DIM_
 #define _BEGIN_DIM_ 1
 #endif
@@ -29,15 +28,8 @@ private:
 
     // Recursive building of our kd-tree.
     void buildTree(int begin, int end, int k, int i, kd_point** pList, kd_node*& node ){
-        // sleep(1);
         int mid = (end-begin)/2;
 
-        // std::cout << "\nBegin: " << begin << std::endl;
-        // std::cout << "End  : " << end << std::endl;
-        // std::cout << "Mid  : " << mid << std::endl;
-        // std::cout << "Pos  : " << mid+begin << std::endl;
-
-        // std::cout << "A: " << node << std::endl;
 
         i = (i+1) % k;
 
@@ -45,20 +37,12 @@ private:
         std::sort(&pList[begin], &pList[end], compCheck[i]);
 
         if (end <= begin){
-            // std::cout << "This should not be happening..." << std::endl;
             return;
         } else if (end - begin == 1) {
-            // std::cout << "  Only one item" << std::endl;
-            // std::cout << "Assign start" << std::endl;
             node = new kd_node(pList[begin],i);
-            // prntPnt(pList[begin]);
         } else if (end-begin > 1) {
             
-            // std::cout << "Assign mid" << std::endl;
             node = new kd_node(pList[begin+mid],i);
-            // std::cout << "A: " << node << std::endl;
-
-            // prntPnt(pList[begin+mid]);
             
             buildTree(begin, begin+mid, k, i, pList, node->getLeft());
             buildTree(begin+mid+1, end, k, i, pList, node->getRight());
@@ -128,9 +112,6 @@ public:
     }
 
     void prntPnt(kd_point* pnt){
-        // std::cout << "Point Addr: " << pnt << std::endl;
-        // std::cout << "   Mass : " << pnt->mass << std::endl;
-        // std::cout << "   NET  : " << pnt->NET  << std::endl;
         std::cout << pnt->peptide << "," << pnt->mass << "," << pnt->NET << std::endl;
     }
 
@@ -155,10 +136,8 @@ public:
     // ~kd_tree();
 
     void search(kd_point* sPoint ){
-        // nnSearch(root, sPoint);
         kd_point* nn = root->getVal();
         recSearch(root, sPoint, nn, _BEGIN_DIM_);
-        // std::cout << "Nearest neighbor:" << std::endl;
         formatOutput(sPoint, nn);
     }
 
@@ -175,8 +154,6 @@ public:
         int i = 0;
         bool search = false;
 
-        // std::cout << "Root info: " << std::endl;
-        // prntNodeInfo(root);
         Q.push(root);
 
         while (!Q.empty()){
@@ -193,33 +170,17 @@ public:
                 search = true;
                 if (node->getLeft()) {
                     markNode = node->getLeft();
-                    // i++;
                     search = false;
                 } else if (node->getRight()){
                     markNode = node->getRight();
-                    // i++;
                     search = false;
                 } else {
-                    // if (Q.front()) {
-                    //     i++;
-                    //     markNode = Q.front();
-                    // } else {
-                    //     // i++;
-                    // }
                 }
             }
             if (node) {
                 std::cout << std::endl;
-                // std::cout << "  Level: " << i << std::endl;
-                // std::cout << "  Node : " << node << std::endl;
-                // std::cout << "  L    : " << node->getLeft()<< std::endl;
-                // std::cout << "  R    : " << node->getRight() << std::endl;
                 prntPnt(node->getVal());
             }
-            // std::cout << "," << getBalance(node) << std::endl;
-            // prntNodeInfo(node, true);
-            // prntNodeInfo(markNode);
-
             if (node->getLeft()) {
                 Q.push(node->getLeft());
             }

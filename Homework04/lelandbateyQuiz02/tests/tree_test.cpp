@@ -32,23 +32,13 @@ int main(int argc, char const *argv[])
         }
     }
 
-    // std::vector<kd_point*> pntVect = getPointList(std::string(argv[1]));
     int* plSize = new int(0);
     kd_point** pntList = getPointList(std::string(argv[1]), plSize);
-    // int initSize = getLines(std::string(argv[1]));
-    // int plSize = countPnts(pList);
-
-    // std::cout << "plSize  : " << (*plSize) << std::endl;
-    // std::cout << "initSize: " << initSize << std::endl;
 
     kd_tree mTree;
 
     mTree.build(pntList, *plSize);
 
-
     mTree.bfp();
-
-
-
     return 0;
 }

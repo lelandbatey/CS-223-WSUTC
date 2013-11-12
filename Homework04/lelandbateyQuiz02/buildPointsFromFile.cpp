@@ -57,12 +57,9 @@ kd_point** getPointList(std::string fileName, int* plSize){
     for (unsigned int i = 0; i < strVect.size(); ++i){
         brokeLine = split(strVect[i],',');
         if (brokeLine.size() > 1) {
-            // std::cout << brokeLine[0] << " " << brokeLine[1] << std::endl;
             pntList[i] = new kd_point( brokeLine[0], strToDub(brokeLine[1]));
             (*plSize)++;
         } else {
-            // std::cout << "found odd line: " << strVect[i] << std::endl;
-            // std::cout << "  Line #: " << i << std::endl;
         }
     }
 
@@ -84,7 +81,6 @@ kd_point** getObservedList(std::string fileName, int* olSize){
     kd_point** pntList = new kd_point*[totalLines];
     std::ifstream input(fileName.c_str());
     std::string line;
-    // std::vector<std::string> strVect(totalLines+10); // Sets up vector of size totalLines + 10
     std::vector<std::string> brokeLine;// Will hold the two elemenst from our split string.
 
     getline(input, line, '\n'); // "Eats" the first line, which is just a csv header
