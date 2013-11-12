@@ -4,8 +4,6 @@
 #include <queue>
 #include <stack>
 #include <unistd.h>
-#include "kd_node.h"
-
 #ifndef _BEGIN_DIM_
 #define _BEGIN_DIM_ 1
 #endif
@@ -13,6 +11,8 @@
 #ifndef _DIMS_
 #define _DIMS_ 2
 #endif
+#include "kd_node.h"
+
 
 
 
@@ -23,6 +23,7 @@ private:
     kd_node* root;
     bool (*compCheck[2])(kd_point*,kd_point*);
     bool (*oCompCheck[2])(kd_point*,kd_point*);
+    double (*sphereCheck[2])(kd_point*,kd_point*);
 
     void prntPnt(kd_point* pnt){
         // std::cout << "Point Addr: " << pnt << std::endl;
@@ -79,29 +80,8 @@ private:
         bool done = false;
         int k = _BEGIN_DIM_;
 
-        std::stack<kd_node*> nStack = loopTreeSearch(node, sPoint, nn);
+        std::stack<kd_node*> nStack = loopTreeSearch(node, sPoint);
 
-        // while (!done){
-        //     k = (k+1) % _DIMS_;
-        //     if (node == NULL){
-        //         done = true;
-        //         continue;
-        //     }
-        //     if (node){
-        //         // if (k = node->getK() == k){
-        //         //     std::cout << "Our dimension is the same one as was recorded." << std::endl;
-        //         // } else {
-        //         //     std::cout << "NOT THE SAME" << std::endl;
-        //         // }
-        //         if (oCompCheck[k](sPoint,node->getVal())){ // Then the search_node is smaller than the current node.
-        //             nStack.push(node);
-        //             node = node->getLeft();
-        //         } else if (oCompCheck[k](sPoint,node->getVal())){ // search_node is larger than the current node.
-        //             nStack.push(node);
-        //             node = node->getRight();
-        //         }
-        //     }
-        // }
 
         std::cout << "Top: " << nStack.top() << std::endl;
         std::cout << "TopVal: " << nStack.top()->getVal() << std::endl;
@@ -115,11 +95,6 @@ private:
         bestDist = oCalcDistance(sPoint, nn);
 
 
-        std::cout << std::setprecision(5) << bestDist << std::endl;
-        std::cout << "Nearest neighbor:" << std::endl;
-        prntPnt(nn);
-        std::cout << "sPoint: " << std::endl;
-        std::cout << sPoint->getObservedMass() << "," << sPoint->getObservedNET() << std::endl;
 
         done = false;
         while (!done){
@@ -138,15 +113,32 @@ private:
                 std::cout << "This node is in the hypersphere:" << std::endl;
                 prntPnt(node->getVal());
 
-                
+                std::stack<kd_node*> checkStack;
+                kd_point* potentialNeighbor;
+                kd_node* checkNode = node;
+
+                if (oCompCheck[checkNode->getK()](sPoint, checkNode->getVal())){
+                    checkStack = loopTreeSearch(checkNode->getRight(), sPoint); // Here we got right instead of left
+                } else {
+                    checkStack = loopTreeSearch(checkNode->getLeft(), sPoint); // Here we go left isntead of right
+                }
+                potentialNeighbor = checkStack.top()->getVal();
+
+                if (bestDist > oCalcDistance(sPoint, potentialNeighbor)){
+                    bestDist = oCalcDistance(sPoint, potentialNeighbor);
+                    nn = potentialNeighbor;
+                    std::cout << "Found a new nearest neighbor!" << std::endl;
+                }
             }
-
-
         }
-        // Doesn't do hypersphere calculations for nearest neighbor.
+        std::cout << std::setprecision(5) << bestDist << std::endl;
+        std::cout << "Nearest neighbor:" << std::endl;
+        prntPnt(nn);
+        std::cout << "sPoint: " << std::endl;
+        std::cout << sPoint->getObservedMass() << "," << sPoint->getObservedNET() << std::endl;
     }
 
-    std::stack<kd_node*> loopTreeSearch(kd_node*& node, kd_point*& sPoint, kd_point*& nn ){
+    std::stack<kd_node*> loopTreeSearch(kd_node*& node, kd_point*& sPoint){
         // kd_point* nn;
         bool done = false;
         int k = _BEGIN_DIM_;
@@ -163,13 +155,63 @@ private:
                 if (oCompCheck[k](sPoint,node->getVal())){ // Then the search_node is smaller than the current node.
                     nStack.push(node);
                     node = node->getLeft();
-                } else if (oCompCheck[k](sPoint,node->getVal())){ // search_node is larger than the current node.
+                } else if (!oCompCheck[k](sPoint,node->getVal())){ // search_node is larger than the current node.
                     nStack.push(node);
                     node = node->getRight();
                 }
             }
         }
         return nStack;
+    }
+
+    void recSearch(kd_node*& node, kd_point*& sPoint, kd_point*& nn, int k){
+        k = (k+1) % _DIMS_;
+
+        // bool foundLeaf = false
+
+
+        if (oCompCheck[k](sPoint, node->getVal())){ // sPoint smaller, go left
+            if (node->getLeft()){
+                recSearch(node->getLeft(), sPoint, nn, k);
+            } else {
+                if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+                    nn = node->getVal();
+                }
+                return;
+            }
+        } else { // sPoint larger, go right.
+            if (node->getRight()){
+                recSearch(node->getRight(), sPoint, nn, k);
+            } else {
+                if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+                    nn = node->getVal();
+                }
+                return;
+            }
+        }
+
+        // If the cartesian distance is less, then current node the new nearest neighbor
+        if (oCalcDistance(sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+            nn = node->getVal();
+        }
+
+        // If there's any possibility that there could be nodes in another
+        // fork of the subtree, then we explore that as well.
+        if (sphereCheck[k](sPoint, node->getVal()) < oCalcDistance(sPoint, nn)){
+            if ( oCalcDistance(sPoint, node->getVal()) ){// spoint smaller, but we check the other direction (right)
+                if (node->getLeft()){
+                    recSearch(node->getRight(), sPoint, nn, k);
+                }
+            } else {
+                if (node->getRight()){
+                    recSearch(node->getLeft(), sPoint, nn, k);
+                }
+            }
+        }
+
+        
+
+        return;
     }
 public:
     kd_tree(){
@@ -180,6 +222,8 @@ public:
         compCheck[1] = &compNET;
         oCompCheck[0] = &oCompMass;
         oCompCheck[1] = &oCompNET;
+        sphereCheck[0] = &distMass;
+        sphereCheck[1] = &distNET;
     };
 
     void build(kd_point** pList, int max_size ){
@@ -191,7 +235,11 @@ public:
     // ~kd_tree();
 
     void search(kd_point* sPoint ){
-        nnSearch(root, sPoint);
+        // nnSearch(root, sPoint);
+        kd_point* nn = root->getVal();
+        recSearch(root, sPoint, nn, _BEGIN_DIM_);
+        std::cout << "Nearest neighbor:" << std::endl;
+        prntPnt(nn);
     }
 
     void bfp(){

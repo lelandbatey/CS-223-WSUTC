@@ -10,6 +10,22 @@
 #include "../kd_tree.h"
 #include "../kd_point.h"
 
+kd_point* linSearch(kd_point** pntList, kd_point* search_point, int* plSize){
+    kd_point* nearest;
+    double dist = 10000;
+
+    for (int i = 0; i < (*plSize); ++i){
+        if (oCalcDistance(search_point, pntList[i]) < dist){
+            dist = oCalcDistance(search_point, pntList[i]);
+            nearest = pntList[i];
+        }
+    }
+
+    std::cout << "Nearest: " << std::endl;
+    std::cout << "  " << nearest->getMass() << "," << nearest->getNET() << std::endl;
+
+    return nearest;
+}
 
 int main(int argc, char const *argv[])
 {
@@ -28,6 +44,7 @@ int main(int argc, char const *argv[])
 
     mTree.search(search_point);
 
+    linSearch(pntList, search_point, plSize);
 
 
     return 0;

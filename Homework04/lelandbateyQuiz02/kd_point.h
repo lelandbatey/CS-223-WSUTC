@@ -122,9 +122,17 @@ bool compNET(kd_point* pnt1, kd_point* pnt2 ){
     return pnt1->getNET() < pnt2->getNET();
 }
 
+double distMass(kd_point* oPnt, kd_point* knownPoint){
+    return std::abs(oPnt->getObservedMass() - knownPoint->getMass());
+}
+
+double distNET(kd_point* oPnt, kd_point* knownPoint){
+    return std::abs(oPnt->getObservedNET() - knownPoint->getNET());
+}
+
 double oCalcDistance(kd_point* oPnt, kd_point* knownPoint){
 
-    std::cout << "Calculating the distance!" << std::endl;
+    // std::cout << "Calculating the distance!" << std::endl;
     // std::cout << "Square of massDist: " << std::setprecision(50) << pow(abs(knownPoint->getMass() - oPnt->getObservedMass()), 2.0) << std::endl;
     
     double dist = 0;
