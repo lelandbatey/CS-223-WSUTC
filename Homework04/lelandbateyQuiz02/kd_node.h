@@ -5,12 +5,12 @@ class kd_node
 {
 private:
 
-
-public:
     kd_node* left;
     kd_node* right;
     kd_point* value;
     int k_dim;
+
+public:
 
     kd_node(){
         left = right = NULL;
@@ -52,6 +52,5 @@ public:
     }
     void setLeft(kd_node*& node){
         left = node;
-    }
-    
+    }  
 };

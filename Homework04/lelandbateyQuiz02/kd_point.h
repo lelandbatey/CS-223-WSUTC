@@ -16,7 +16,7 @@ private:
         lfbMap pepMap;
 
         for (unsigned int i = 0; i < str.size(); ++i){
-            // I realize this is a monstrous peice of horribleness. I would
+            // I realize this is a monstrous piece of horribleness. I would
             // have done it a much better way, but it's not the worst thing I
             // could have done, and it is easy.
 
@@ -25,7 +25,6 @@ private:
         return toReturn;
     }
 
-public:
     std::string peptide;
     double mass;
     double NET;
@@ -33,6 +32,7 @@ public:
     double oMass;
     double oNET;
 
+public:
 
     bool (*compCheck[2])(kd_point*,kd_point*);
 
@@ -95,51 +95,79 @@ public:
 
 };
 
+/*
+
+## Why Are These Functions Here? ##
+
+All of these functions are used in some part of the tree. Each "pair" of
+functions is stored in an array of pointers to functions that's then used to
+compare different objects at the various regions where they are needed.
+
+For example, the pair of functions:
+    
+    oCompMass
+    oCompNET
+
+Are stored in an array, `oCompCheck`, in the kd-tree. These functions are then
+used to compare the `observed (mass/NET)` against the `mass/net` that is
+recorded in the point in the peptide database.
+
+They're stored as a arrays of pointers to functions so we can then call the
+correct comparison function just by saying:
+
+    d = current_dimension
+    array_of_comparison_functions[d](point1, point2)
+
+I don't know if this is the "correct" way to do this, but it works and I think
+it's a neat idea. If there's a "better", or more correct way to do this, I'd
+love to know what that is.
+
+Also, since pretty much all of these are doing some kind of operation
+(comparison or math) on either the mass or the NET, it's important that they
+be ordered consistently so that the same aspects are always compared on the
+same 'level'. Because of that, the rule is:
+
+> The function dealing with `mass` is always in the `0` index, and the
+> function dealing with NET is always the `1` index.
+
+*/
 bool oCompMass(kd_point* pnt1, kd_point* pnt2){
     return pnt1->getObservedMass() < pnt2->getMass();
 }
-
 // True if observed NET is smaller than known NET, false if bigger.
 bool oCompNET(kd_point* pnt1, kd_point* pnt2){
     return pnt1->getObservedNET() < pnt2->getNET();
 }
-
 bool compMass(kd_point* pnt1, kd_point* pnt2 ){
     return pnt1->getMass() < pnt2->getMass();
 }
-
 bool compNET(kd_point* pnt1, kd_point* pnt2 ){
     return pnt1->getNET() < pnt2->getNET();
 }
-
 double distMass(kd_point* oPnt, kd_point* knownPoint){
     return std::abs(oPnt->getObservedMass() - knownPoint->getMass());
 }
-
 double distNET(kd_point* oPnt, kd_point* knownPoint){
     return std::abs(oPnt->getObservedNET() - knownPoint->getNET());
 }
 
 double oCalcDistance(kd_point* oPnt, kd_point* knownPoint){
-    
     double dist = 0;
-    // Whoooo pythagorean theorum!
+    // Whoooo Pythagorean theorem!
     dist = sqrt( pow(std::abs(knownPoint->getMass() - oPnt->getObservedMass()), 2.0)+pow(std::abs(knownPoint->getNET() - oPnt->getObservedNET()), 2.0) );
     return dist;
 
 }
 
+/*
+Something to note about the way this works:
 
-// Something to note about the way this works:
-//
-// This function, though based on a good idea, is fundamentally misguided in
-// how it calculates whether something is actually inside the hypersphere. It
-// will pretty much always say that something is inside it's hypersphere, even
-// if it actually isn't. I realize that this hurts the efficiency of the
-// program, but I don't care because while it makes the program run slower (by
-// searching more exhaustively than is necessary), it doesn't actually break
-// the program. I just wanted to note that I do in fact get why this is
-// incorrect.
+This function was is fundamentally misguided in that it will always catch
+something that is in fact inside of the hypersphere, but it also has a very
+high false positive rate. This is the original hypersphere check, but
+you'll notice that it isn't actually used anywhere in the program. I would
+remove it, but I feel it might be an important reflection on my programming.
+*/
 bool isInsideHyperSphere(double nnDist, kd_point* nn, kd_point* checkNode){
     if (abs(nn->getMass() - checkNode->getMass()) > nnDist ){
         return true;

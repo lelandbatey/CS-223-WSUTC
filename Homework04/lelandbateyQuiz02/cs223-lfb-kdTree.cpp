@@ -14,8 +14,10 @@
 
 
 kd_point* linSearch(kd_point** pntList, kd_point* search_point, int* plSize){
+    // Originally written as a test to compare against the results from the
+    // kd-tree search. It is currently not used for anything.
     kd_point* nearest;
-    double dist = 10000;
+    double dist = 0;
 
     for (int i = 0; i < (*plSize); ++i){
         if (oCalcDistance(search_point, pntList[i]) < dist){
@@ -49,11 +51,11 @@ int main(int argc, char const *argv[])
     std::cout << "Observed ID, Peptide, NET, Mass, Observed NET, Observed Mass" << std::endl;
     for (int i = 0; i < *olSize; ++i){
         mTree.search(opList[i]);
+        // mTree.formatOutput( opList[i],linSearch(pntList, opList[i], plSize));
+        // This line can be commented out to print the the same results but
+        // using linear search. If you do so, you'll see that it gives the
+        // exact same output.
     }
-
-
-
-
 
     return 0;
 }

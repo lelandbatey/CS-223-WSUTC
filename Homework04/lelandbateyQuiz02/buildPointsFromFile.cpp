@@ -3,30 +3,8 @@
 #include "kd_point.h"
 
 
-// Returns array of std::strings, with each 
-std::vector<std::string> getNames(std::string fileName){
-
-    int totalLines = getLines(fileName);
-
-
-    if (DEBUG) {
-        std::cout << "\tTotal lines in the file: " << totalLines << std::endl;
-    }
-
-    std::ifstream input(fileName.c_str());
-    std::string line;
-    std::vector<std::string> strVect(totalLines+10); // Sets up vector of size totalLines + 10
-    
-    int x = 0;
-    while (x < totalLines) {
-        getline(input, line, '\n');
-        strVect[x] = line;
-        x++;
-    }
-
-    return strVect;
-}
-
+// Returns a list of pointers.
+// Is used only for getting points from the peptide-database
 kd_point** getPointList(std::string fileName, int* plSize){
     int totalLines = getLines(fileName);
     
@@ -53,7 +31,6 @@ kd_point** getPointList(std::string fileName, int* plSize){
         x++;
     }
 
-
     for (unsigned int i = 0; i < strVect.size(); ++i){
         brokeLine = split(strVect[i],',');
         if (brokeLine.size() > 1) {
@@ -64,7 +41,6 @@ kd_point** getPointList(std::string fileName, int* plSize){
     }
 
     return pntList;
-
 }
 
 kd_point** getObservedList(std::string fileName, int* olSize){
