@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
     mTree.build(pntList, *plSize);
 
     std::cout << "Observed ID, Peptide, NET, Mass, Observed NET, Observed Mass" << std::endl;
-    for (int i = 0; i < *olSize; ++i){
+    for (int i = 0; i < *olSize-1; ++i){
         mTree.search(opList[i]);
         // mTree.formatOutput( opList[i],linSearch(pntList, opList[i], plSize));
         // This line can be commented out to print the the same results but
