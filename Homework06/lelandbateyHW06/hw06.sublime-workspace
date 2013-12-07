@@ -1,0 +1,293 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ti",
+				"trie_n"
+			],
+			[
+				"if",
+				"if	If Condition"
+			],
+			[
+				"com",
+				"compareExtent"
+			],
+			[
+				"deltaD",
+				"deltaDataThroughTime"
+			],
+			[
+				"rx",
+				"rxBytes"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"del",
+				"deltaData"
+			],
+			[
+				"url",
+				"urlParams"
+			],
+			[
+				"cull",
+				"cullDayRange"
+			],
+			[
+				"data",
+				"dataThrash"
+			],
+			[
+				"datA",
+				"dataThrash"
+			],
+			[
+				"dis",
+				"timeDistance"
+			],
+			[
+				"byt",
+				"byteRecordDict"
+			],
+			[
+				"cul",
+				"cullDayRange"
+			],
+			[
+				"by",
+				"byteRecordDict"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 404.0
+	},
+	"console":
+	{
+		"height": 114.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/trie_n.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/suffix_t.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/fileReader.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfblib.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/readAnimalCsv.cpp",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/tree_t.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/animals_c.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfb.hw06.cpp",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/hw06.sublime-project",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/node_t.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework04/lelandbateyQuiz02/buildPointsFromFile.cpp",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/05.12.2013-cs223-homework06-description.md",
+		"/home/leland/.config/sublime-text-3/Packages/C++/std-cout.sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/C++/if-..-(if).sublime-snippet",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/trie_node.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/suffixtree.h",
+		"/home/leland/.config/sublime-text-3/Packages/C++/std-vector-(v).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/C++/std-string-(s).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/User/C++/030-for-int-loop-(fori).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/User/if-..-(if).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/User/c++/030-for-int-loop-(fori).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/User/c++/do...while-loop-(do).sublime-snippet",
+		"/home/leland/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/leland/.config/sublime-text-3/Cache/C++/Completion Rules.tmPreferences.cache",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework04/lelandbateyQuiz02/lfbLib.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lorem_ipsum_novel.txt",
+		"/home/leland/projects/graphing_projects/d3js_tests/d3_testv3.html",
+		"/home/leland/projects/graphing_projects/d3js_tests/d3_testv2.html",
+		"/home/leland/projects/graphing_projects/d3js_tests/d3.legend.js",
+		"/home/leland/projects/graphing_projects/d3js_tests/dataFlog.js",
+		"/home/leland/school/cs223/Homework05/cs223-HW05-Description.md",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs260/CS260-Final-INFO_and_STUDY_GUIDE.md",
+		"/home/leland/school/cs223/Homework05/02.11.2013-cs223-HW05-paper.md",
+		"/home/leland/school/cs223/Homework05/02.11.2013-cs223-HW05-paper-ROUGH-DRAFT.md",
+		"/home/leland/projects/graphing_projects/d3js_tests/d3.v3.js",
+		"/home/leland/projects/graphing_projects/d3js_tests/d3_test.html",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework05/cs223-HW05-Description.md",
+		"/home/leland/projects/c_snippets/gameOfLife.c",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework05/02.11.2013-cs223-HW05-paper.md",
+		"/home/leland/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/leland/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/leland/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"len",
+			"int ",
+			"suffix_t",
+			"char",
+			"getline",
+			"bonus",
+			"’",
+			",",
+			"“",
+			"”",
+			"console",
+			"end",
+			"getTime",
+			"”",
+			"data",
+			"dataLocation",
+			"rxBytes",
+			"null",
+			"nan",
+			"data",
+			"diff",
+			"data",
+			"dataLocation",
+			"httpget",
+			"data",
+			"max",
+			"length",
+			"pret",
+			"12",
+			"d)",
+			"height",
+			"yesterday",
+			"gran",
+			"alt",
+			"col",
+			"wrap",
+			"leland@leland-laptop:\n~/scrap"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 88.0
+	},
+	"project": "hw06.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 133.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

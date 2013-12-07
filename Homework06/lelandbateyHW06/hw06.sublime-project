@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06"
+		}
+	],
+    "build_systems":
+    [
+        {
+            "name": "Custom C++",
+            "shell_cmd": "make && ./novel test && echo Done"
+        }
+    ]
+}
