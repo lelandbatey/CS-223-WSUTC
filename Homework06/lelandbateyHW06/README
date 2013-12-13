@@ -1,0 +1,31 @@
+        ____  _________    ____  __  _________
+       / __ \/ ____/   |  / __ \/  |/  / ____/
+      / /_/ / __/ / /| | / / / / /|_/ / __/   
+     / _, _/ /___/ ___ |/ /_/ / /  / / /___   
+    /_/ |_/_____/_/  |_/_____/_/  /_/_____/   
+                                              
+
+Leland Batey
+CS 223 - December 12, 2013
+Final Assignment
+
+## Instructions
+
+I've included the two files I used for testing, lorem_ipsum_novel.txt and lorem_ipsum_novel1.txt. If other input causes crashing, I don't know what I could have done to make this more robust :/
+
+
+## Shortfalls and Caveats
+
+1. In the requirements, it said that the program should handle the edge case of a word being on the end of a line, and the requirements state that it should still get the next 2 words from the next line and print those, indicating that it spanned 2 lines. My program does not do this. I was lazy, and if it hits the end of a line, it just doesn't print anything for the next two words.
+2. This is more of a caveat; I was confused about how exactly we should handle searching for suffixes. With prefixes, we say that it needs to be from the beginning of the word. However, does a suffix need to be the literal end of a word? Or can it be in the middle?  
+From what I'd seen in class, I assumed that we should be doing a more "loose" suffix search, and include substrings.
+
+
+## Extra credit
+
+There are two items of extra credit that I feel I can lay claim to:
+
+1. I use colored output to highlight the word that is found.
+2. I do not store the entire file in memory for searching, I re-examine the file each time a search is done.
+
+

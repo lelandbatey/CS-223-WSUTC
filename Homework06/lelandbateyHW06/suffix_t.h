@@ -1,5 +1,6 @@
 #include <iostream>
 #include "trie_n.h"
+#include "lfblib.h"
 #pragma once
 
 
@@ -10,17 +11,19 @@ protected:
 
 private:
     virtual void insert(std::string s, int word, int line, int page){ std::cout << "Yeeaaaaah, so there's not actually an insert function here yet..." << std::endl;};
-    // virtual void search(std::string s){std::cout << "ummm... So there's not a search function either..." << std::endl;};
-
+    
     std::vector<wordPos_ts*> search(std::string s){
         trie_n* mNode = root;
 
+        // std::cout << s << std::endl;
+
         for (int i = 0; i < s.size(); ++i){
             if (mNode->isValid(s[i])){
+                // std::cout << s[i] << std::endl;
                 mNode = mNode->getChild(s[i]);
             }
         }
-        resultsPrint(mNode->getLoc(),s);
+        // resultsPrint(mNode->getLoc(),s);
         return mNode->getLoc();
 
     };
@@ -62,42 +65,35 @@ private:
         // Suffix insert
         trie_n* mNode = root;
 
-        // std::cout << s << std::endl;
-        // std::cout << s.size() << std::endl;
-
+        
         for (int i = 0; i < s.size(); ++i){
             mNode = root;
             for (int k = i; k < s.size(); ++k){
-                // std::cout << s[k] << std::endl;
                 if (mNode->isValid(s[k])){
+                // std::cout << s[k];
                     mNode = mNode->getChild(s[k]);
                     mNode->storeWordLoc(word, line, page);
                 }
             }
             // std::cout << "" << std::endl;
-
         }
     };
-
-    // virtual void search(std::string s){
-    //     trie_n* mNode = root;
-
-    //     for (int i = 0; i < s.size(); ++i){
-    //         if (mNode->isValid(s[i])){
-    //             mNode = mNode->getChild(s[i]);
-    //         }
-    //     }
-
-    // };
 };
 
 class prefix_t: public trie_t{
 private:
     virtual void insert(std::string s, int word, int line, int page){
-        
-    };
-    // virtual void search(std::string s){
+        // Prefix insert
+        trie_n* mNode = root;
 
-    // };
+        mNode = root;
+        for (int i = 0; i < s.size(); ++i){
+                // std::cout << s[k] << std::endl;
+            if (mNode->isValid(s[i])){
+                mNode = mNode->getChild(s[i]);
+                mNode->storeWordLoc(word, line, page);
+            }
+        }
+    };
 };
 

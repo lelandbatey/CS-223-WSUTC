@@ -25,7 +25,7 @@ private:
 public:
     trie_n(){
         // Sadly, it's the only thing I could think of initialize the whole thing to 0
-        for (int i = 0; i < __CHILDRENAMOUNT__; ++i){
+        for (int i = 0; i <= __CHILDRENAMOUNT__; ++i){
             children[i] = 0;
         }
 
@@ -44,7 +44,7 @@ public:
 
         trie_n* nulTrie = 0;
 
-        if (c < 'z' && c > 'a'){
+        if (c <= 'z' && c >= 'a'){
             if (children[c-'a'] == 0){ // if it's un-initialized
                 children[c-'a'] = new trie_n();
                 return children[c-'a'];
@@ -52,7 +52,7 @@ public:
             return children[c-'a'];
         }
 
-        if (c > '0' && c < '9'){
+        if (c >= '0' && c <= '9'){
             // The '22' seems like a magic number. However, it's because we
             // want to get 0-9 to be in the 26-35 position. Since '0' is 48,
             // we subtract 22 to make it begin at 26.
@@ -102,9 +102,9 @@ public:
     };
 
     bool isValid(char c){
-        if (c > 'a' && c < 'z'){
+        if (c >= 'a' && c <= 'z'){
             return true;
-        } else if (c > '0' && c < '9') {
+        } else if (c >= '0' && c <= '9') {
             return true;
         } else {
             return false;

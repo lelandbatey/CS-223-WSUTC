@@ -7,7 +7,7 @@
 #include "suffix_t.h"
 
 // #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 // #endif
 
 int main(int argc, char const *argv[])
@@ -17,23 +17,13 @@ int main(int argc, char const *argv[])
         return 0;
     }
 
-    suffix_t myTree;
+    suffix_t sTree;
+    prefix_t pTree;
+    std::string fileName = std::string(argv[1]);
 
-    readIntoTrees(std::string("lorem_ipsum_novel.txt"),&myTree);
+    // fileName = "lorem_ipsum_novel.txt";
 
-    // myTree.add(std::string("what"),1,1,1);
-    // myTree.add(std::string("is"),2,1,1);
-    // myTree.add(std::string("going"),3,1,1);
-
-    // if (DEBUG){
-    //     myTree.print();
-    // }
-
-    myTree.find(std::string("g"));
-    myTree.find(std::string("tet"));
-    // myTree.find(std::string("i"));
-
-    // std::cout <<  << std::endl;
+    readIntoTrees(fileName,&sTree,&pTree);
 
     std::string s;
     // std::cin >> s;
@@ -41,6 +31,17 @@ int main(int argc, char const *argv[])
     std::string input;
     std::string otherIn;
     bool doneFlag = false;
+
+
+    if (DEBUG){
+        std::map<std::string,int>* badWords = buildCommonWordsMap(std::string("commonWords.txt"));
+        // std::cout << badWords->count(cleanString(strLower(std::string("a")))) << std::endl;
+
+        std::cout << badWords << std::endl;
+        std::cout << badWords->size() << std::endl;
+        
+    }
+
 
     // Get input loop and execute commands
 
@@ -61,14 +62,22 @@ int main(int argc, char const *argv[])
         otherIn = getAfter(input," "); // The command verb
         input = getBefore(input," "); // the command modifiers
 
-        input = strUpper(input);
-        otherIn = strUpper(otherIn);
-        if (input == "EXIT") {
+        input = strLower(input);
+        otherIn = strLower(otherIn);
+
+        // std::cout << "'" <<  input << "'" << std::endl;
+        // std::cout << "'" << otherIn << "'" << std::endl;
+
+        if (input == "exit") {
             
             std::cout << "Hope you found what you need!" << std::endl;
             return 0;
-        } else if (input == "PREFIX"){
-            
+        } else if (input == "prefix"){
+            printTreeResults(pTree.find(otherIn), otherIn, fileName);
+            // pTree.find(otherIn);
+        } else if (input == "suffix"){
+            printTreeResults(sTree.find(otherIn), otherIn, fileName);
+            // sTree.find(otherIn);
         }
     }
 

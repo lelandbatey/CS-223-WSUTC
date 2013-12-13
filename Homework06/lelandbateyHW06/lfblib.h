@@ -189,6 +189,15 @@ int upper(int c)
 // Example of how to use it:
 // std::transform(s.begin(), s.end(), s.begin(), upper);
 
+int lower(int c)
+{
+  return std::tolower((unsigned char)c);
+}
+
+std::string strLower(std::string str){
+    std::transform(str.begin(), str.end(), str.begin(), lower); // Make it lowercase
+    return str;
+}
 
 // Convenience function that uppercases and trims whitespace    
 std::string strFlog(std::string str) {
