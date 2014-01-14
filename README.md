@@ -21,3 +21,11 @@ I cannot garuntee that this code will be beautiful. I can only garuntee that it 
 
 Currently, there should be a document in each folder that gives the requirements for each assignment. You should read those to understand what each program does.
 
+## File Formats
+
+Each file of notes or program-requirements is in two file formats:
+
+1. A plain-text markdown file
+2. A pdf document
+
+Each document was originally written in markdown in a plaintext editor (Vim, Sublime Text, Notepad++, etc) and was then converted into a PDF using [Pandoc](http://johnmacfarlane.net/pandoc/). The layout of the PDFs is intended to make the documents the same size as an original Kindle Fire (the e-reader I use to read these notes). The Pandoc/LaTex template for this is in the `notes` folder at the root of this repository, named `tablet.latex`.
