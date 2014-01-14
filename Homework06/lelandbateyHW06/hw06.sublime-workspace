@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"word",
+				"wordPos_ts"
+			],
+			[
+				"wor",
+				"wordLoc"
+			],
+			[
+				"wo",
+				"wordLoc"
+			],
+			[
+				"trie",
+				"trie_n"
+			],
+			[
+				"CHI",
+				"__CHILDRENAMOUNT__"
+			],
+			[
 				"ti",
 				"trie_n"
 			],
@@ -67,8 +87,43 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/leland/projects/project_euler/001/3.5_multiples.py",
+			"settings":
+			{
+				"buffer_size": 285,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/leland/projects/project_euler/002_even_fibonaci_numbers/even_fibo.py",
+			"settings":
+			{
+				"buffer_size": 369,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/leland/projects/project_euler/003_largest_prime_factor/largePrimeFact.py",
+			"settings":
+			{
+				"buffer_size": 471,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "from __future__ import print_function\n\n\n# Goal:\n\n\n# A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.\n\n# Find the largest palindrome made from the product of two 3-digit numbers.\n\n\n\n\n",
+			"file": "/home/leland/projects/project_euler/004_largest_palindrome_product/large_3_digit_pal.py",
+			"file_size": 44,
+			"file_write_time": 130324223639779303,
+			"settings":
+			{
+				"buffer_size": 267,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
 		"height": 392.0,
@@ -95,14 +150,39 @@
 	},
 	"file_history":
 	[
-		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/trie_n.h",
-		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/suffix_t.h",
-		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/fileReader.h",
-		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfblib.h",
+		"/home/leland/projects/markdown_projects/multi-lingo-text-parser/hello.py",
+		"/home/leland/lelandConfigRepo/install.py",
+		"/home/leland/dropbox/Documents/the_differen_kinds_of_consumer.md",
+		"/home/leland/projects/raytracer/ray_tracer-scratchapixel/raytracer.cpp",
+		"/home/leland/projects/raytracer/expanded.c",
+		"/home/leland/projects/data_gathering/beautifulsoup_experiments/buildPrettyPage.py",
+		"/home/leland/projects/veiled_projects/veiled/templates/testPollPage.html",
+		"/home/leland/projects/veiled_projects/veiled/webControl.py",
+		"/home/leland/projects/markdown_projects/multi-lingo-text-parser/templates/md2pdf-old.html",
+		"/home/leland/projects/markdown_projects/multi-lingo-text-parser/templates/md2pdf.html",
+		"/home/leland/projects/markdown_projects/multi-lingo-text-parser/templates/md.html",
+		"/home/leland/projects/flask_projects/flask_example/flask05 - Pastebin/flask05.py",
+		"/home/leland/dropbox/Documents/Christmas_wishlist_for_family-2013.txt",
+		"/home/leland/projects/data_gathering/beautifulsoup_experiments/get_text-scrap.py",
+		"/home/leland/projects/data_gathering/beautifulsoup_experiments/templates/page.html",
+		"/home/leland/projects/flask_projects/flask_example/flask05 - Pastebin/templates/frontpage.html",
+		"/home/leland/projects/flask_projects/flask_example/flask05 - Pastebin/templates/data.html",
+		"/home/leland/projects/flask_projects/flask_example/flask04 - Url Shortner/flask04.py",
+		"/home/leland/projects/data_gathering/beautifulsoup_experiments/index.html",
+		"/home/leland/.config/sublime-text-3/Packages/Python/Python.sublime-build",
+		"/home/leland/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/leland/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/lfb.hw02.cpp",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/readAnimalCsv.cpp",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfblib.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/fileReader.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lorem_ipsum_novel.txt",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/testOut",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/suffix_t.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/trie_n.h",
+		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfb.hw06.cpp",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/tree_t.h",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/animals_c.h",
-		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/lfb.hw06.cpp",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lelandbateyHW06/hw06.sublime-project",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework02/lelandbateyHW02/node_t.h",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework04/lelandbateyQuiz02/buildPointsFromFile.cpp",
@@ -117,7 +197,6 @@
 		"/home/leland/.config/sublime-text-3/Packages/User/if-..-(if).sublime-snippet",
 		"/home/leland/.config/sublime-text-3/Packages/User/c++/030-for-int-loop-(fori).sublime-snippet",
 		"/home/leland/.config/sublime-text-3/Packages/User/c++/do...while-loop-(do).sublime-snippet",
-		"/home/leland/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/leland/.config/sublime-text-3/Cache/C++/Completion Rules.tmPreferences.cache",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework04/lelandbateyQuiz02/lfbLib.h",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework06/lorem_ipsum_novel.txt",
@@ -135,8 +214,7 @@
 		"/home/leland/projects/c_snippets/gameOfLife.c",
 		"/home/leland/dropbox/WSU/2013 - Fall Semester/cs223/Homework05/02.11.2013-cs223-HW05-paper.md",
 		"/home/leland/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
-		"/home/leland/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
-		"/home/leland/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+		"/home/leland/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap"
 	],
 	"find":
 	{
@@ -154,6 +232,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"bin",
+			"bashm",
+			"normali",
+			"intersect",
+			"INFINITY",
+			"ajax",
+			"request",
+			"os",
+			"tag",
+			"donefl",
+			"otherin",
+			"cin",
+			"Word: 3",
+			"word: 3",
+			"word: 2",
+			"k",
+			"Word: 3",
+			"Word: 2",
+			"#1",
+			".",
 			"len",
 			"int ",
 			"suffix_t",
@@ -208,14 +306,127 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/leland/projects/project_euler/001/3.5_multiples.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/leland/projects/project_euler/002_even_fibonaci_numbers/even_fibo.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 369,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								235,
+								235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/leland/projects/project_euler/003_largest_prime_factor/largePrimeFact.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 471,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								312,
+								312
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/leland/projects/project_euler/004_largest_palindrome_product/large_3_digit_pal.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								263,
+								52
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -246,7 +457,11 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 88.0
+		"height": 184.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
 	},
 	"project": "hw06.sublime-project",
 	"replace":
@@ -284,7 +499,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 133.0,
 	"status_bar_visible": true,
 	"template_settings":
